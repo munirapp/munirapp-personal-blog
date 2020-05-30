@@ -1,0 +1,16 @@
+@import "fonts.scss";
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: white;
+  overflow: hidden;
+  font-family: "hind", Fallback, sans-serif;
+}
+
+h1 {
+  font-size: 21px;
+  font-weight: bold;
+}
