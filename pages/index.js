@@ -1,7 +1,15 @@
 import Head from "next/head";
+import { Component } from "react";
+import IndexHeroBackground from "../components/index/IndexHeroBackground.js";
 
-export default function Home() {
-  return (
-    <h1 className="p-1">Almost before we knew it, we had left the ground.</h1>
-  );
+class Home extends Component {
+  render() {
+    return (
+      <div>
+        <IndexHeroBackground />
+      </div>
+    );
+  }
 }
+
+export default Home;
