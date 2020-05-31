@@ -14,6 +14,7 @@ body {
   max-width: 80%;
 }
 .hero-bg {
+  position: relative;
   background-image: linear-gradient(
     270deg,
     $primary-blue,
@@ -21,13 +22,30 @@ body {
     $primary-blue
   );
   min-height: 100vh;
+  .hero-pattern {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: url("/image/pattern.webp");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: 180px;
+    width: 300px;
+    height: 100px;
+  }
   .hero-image {
-    max-width: 400px;
-    -webkit-filter: drop-shadow(35px 5px 35px #2c3e50);
-    filter: drop-shadow(35px 5px 35px #2c3e50);
+    max-width: 350px;
+    -webkit-filter: drop-shadow(35px 5px 35px $primary-shadow);
+    filter: drop-shadow(35px 5px 35px $primary-shadow);
+    @media only screen and(max-width:$mobile-width) {
+      max-width: 150px;
+    }
   }
   .hero-name {
     font-size: 3rem;
+    @media only screen and(max-width:$mobile-width) {
+      font-size: 1.8rem;
+    }
   }
   .hero-title {
     font-weight: bold;
@@ -41,5 +59,37 @@ body {
   }
   .hero-desc {
     font-weight: lighter;
+  }
+}
+.menubar {
+  position: absolute;
+  background: white;
+  border-radius: 10px;
+  width: 70px;
+  min-height: 100px;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  z-index: 4;
+  -webkit-box-shadow: 5px 5px 10px 0px $primary-shadow;
+  -moz-box-shadow: 5px 5px 10px 0px $primary-shadow;
+  box-shadow: 5px 5px 10px 0px $primary-shadow;
+
+  ul {
+    padding: 20px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    li img {
+      width: 50px;
+      padding: 10px 0px;
+    }
+    li:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+      -webkit-filter: drop-shadow(35px 5px 35px $primary-shadow);
+      filter: drop-shadow(35px 5px 35px $primary-shadow);
+    }
   }
 }
