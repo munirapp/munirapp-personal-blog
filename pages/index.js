@@ -11,6 +11,7 @@ class Home extends Component {
         <IndexMenuBar />
         <IndexHeroBackground />
         <IndexBlogContent />
+        <IndexBlogContent />
       </div>
     );
   }

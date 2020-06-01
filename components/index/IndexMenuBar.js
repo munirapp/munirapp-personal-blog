@@ -7,7 +7,7 @@ export default function IndexMenuBar() {
     { icon: "/image/drink.svg", link: "#hiring" },
   ];
   return (
-    <div className="menubar animate__animated animate__menubar animate__delay-2s">
+    <div className="menubar lg:animate__animated lg:animate__menubar lg:animate__delay-2s">
       <ul>
         {list_menu.map((item) => {
           return (

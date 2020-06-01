@@ -14,6 +14,9 @@ body {
 .container {
   margin: 0 auto;
   max-width: 80%;
+  @media only screen and (max-width: $mobile-width) {
+    max-width: 95%;
+  }
 }
 .hero-bg {
   position: relative;
@@ -61,28 +64,55 @@ body {
   }
 }
 .menubar {
-  position: fixed;
-  background: white;
-  border-radius: 10px;
-  width: 70px;
-  min-height: 100px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 4;
-  -webkit-box-shadow: 2px 2px 5px 0px $primary-shadow;
-  -moz-box-shadow: 2px 2px 5px 0px $primary-shadow;
-  box-shadow: 2px 2px 5px 0px $primary-shadow;
+  @media only screen and (min-width: $desktop-width) {
+    position: fixed;
+    background: white;
+    border-radius: 10px;
+    width: 70px;
+    min-height: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    -webkit-box-shadow: 2px 2px 5px 0px $primary-shadow;
+    -moz-box-shadow: 2px 2px 5px 0px $primary-shadow;
+    box-shadow: 2px 2px 5px 0px $primary-shadow;
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    position: fixed;
+    background: white;
+    width: 100%;
+    height: 70px;
+    bottom: 0;
+    z-index: 4;
+  }
 
   ul {
-    padding: 20px 0px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    li img {
-      width: 50px;
-      padding: 10px 0px;
+
+    @media only screen and (min-width: $desktop-width) {
+      justify-content: center;
+      padding: 20px 0px;
+      flex-direction: column;
+      li img {
+        width: 50px;
+        padding: 10px 0px;
+      }
     }
+
+    @media only screen and (max-width: $mobile-width) {
+      justify-content: space-between;
+      height: 100%;
+      width: 100%;
+      padding: 5px 2px;
+      border-top: 1px solid $secondary-shadow;
+      li img {
+        width: 65px;
+        padding: 5px 15px;
+      }
+    }
+
     li:hover {
       transform: scale(1.1);
       cursor: pointer;
@@ -92,7 +122,22 @@ body {
   }
 }
 .content-wrapper {
+  position: relative;
   min-height: 100vh;
+  .content-bg {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    width: 200px;
+    height: 200px;
+    opacity: 0.3;
+  }
+  .icon-blog {
+    background: url("/image/dialogue.svg");
+    background-position: top right;
+    background-size: 120px;
+    background-repeat: no-repeat;
+  }
   .content-body {
     border-radius: 20px;
     -webkit-box-shadow: 5px 5px 20px 0px $secondary-shadow;
@@ -100,5 +145,12 @@ body {
     box-shadow: 5px 5px 20px 0px $secondary-shadow;
     padding: 20px;
     min-height: 600px;
+    .title {
+      font-size: 2rem;
+      font-weight: bolder;
+      color: $primary-blue;
+      border-bottom: 5px solid $primary-yellow;
+      display: inline;
+    }
   }
 }
