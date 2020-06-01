@@ -1,0 +1,88 @@
+:root {
+  --animate-duration: 1s;
+  --animate-delay: 1s;
+}
+.animate__animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-duration: var(--animate-duration);
+  animation-duration: var(--animate-duration);
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.animate__animated.animate__delay-1s {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+  -webkit-animation-delay: var(--animate-delay);
+  animation-delay: var(--animate-delay);
+}
+.animate__animated.animate__delay-2s {
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+  -webkit-animation-delay: calc(var(--animate-delay) * 2);
+  animation-delay: calc(var(--animate-delay) * 2);
+}
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.animate__zoomIn {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate__fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+@-webkit-keyframes menubar {
+  0% {
+    left: -200px;
+  }
+  to {
+    left: 20px;
+  }
+}
+@keyframes menubar {
+  0% {
+    left: -200px;
+  }
+  to {
+    left: 20px;
+  }
+}
+.animate__menubar {
+  -webkit-animation-name: menubar;
+  animation-name: menubar;
+}

@@ -1,22 +1,23 @@
 export default function IndexMenuBar() {
+  const list_menu = [
+    { icon: "/image/user.svg", link: "#home" },
+    { icon: "/image/dialogue.svg", link: "#blog" },
+    { icon: "/image/gallery.svg", link: "#portofolio" },
+    { icon: "/image/flasks.svg", link: "#labs" },
+    { icon: "/image/drink.svg", link: "#hiring" },
+  ];
   return (
-    <div className="menubar">
+    <div className="menubar animate__animated animate__menubar animate__delay-2s">
       <ul>
-        <li>
-          <img src="/image/user.svg" alt="blog" />
-        </li>
-        <li>
-          <img src="/image/dialogue.svg" alt="blog" />
-        </li>
-        <li>
-          <img src="/image/gallery.svg" alt="blog" />
-        </li>
-        <li>
-          <img src="/image/flasks.svg" alt="blog" />
-        </li>
-        <li>
-          <img src="/image/drink.svg" alt="blog" />
-        </li>
+        {list_menu.map((item) => {
+          return (
+            <li>
+              <a href={item.link}>
+                <img src={item.icon} alt={item.link} loading="lazy" />
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

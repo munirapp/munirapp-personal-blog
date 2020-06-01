@@ -1,5 +1,7 @@
-@import "fonts.scss";
+@import url("https://fonts.googleapis.com/css2?family=Hind:wght@400;600&display=swap");
 @import "variables.scss";
+@import "animate.scss";
+
 html,
 body {
   width: 100%;
@@ -7,7 +9,7 @@ body {
   margin: 0 auto;
   background: white;
   overflow-x: hidden;
-  font-family: "hind", Fallback, sans-serif;
+  font-family: "Hind", sans-serif;
 }
 .container {
   margin: 0 auto;
@@ -57,23 +59,19 @@ body {
     min-width: 100px;
     text-align: center;
   }
-  .hero-desc {
-    font-weight: lighter;
-  }
 }
 .menubar {
-  position: absolute;
+  position: fixed;
   background: white;
   border-radius: 10px;
   width: 70px;
   min-height: 100px;
   top: 50%;
-  left: 20px;
   transform: translateY(-50%);
   z-index: 4;
-  -webkit-box-shadow: 5px 5px 10px 0px $primary-shadow;
-  -moz-box-shadow: 5px 5px 10px 0px $primary-shadow;
-  box-shadow: 5px 5px 10px 0px $primary-shadow;
+  -webkit-box-shadow: 2px 2px 5px 0px $primary-shadow;
+  -moz-box-shadow: 2px 2px 5px 0px $primary-shadow;
+  box-shadow: 2px 2px 5px 0px $primary-shadow;
 
   ul {
     padding: 20px 0px;
@@ -88,8 +86,19 @@ body {
     li:hover {
       transform: scale(1.1);
       cursor: pointer;
-      -webkit-filter: drop-shadow(35px 5px 35px $primary-shadow);
-      filter: drop-shadow(35px 5px 35px $primary-shadow);
+      -webkit-filter: drop-shadow(5px 5px 15px $secondary-shadow);
+      filter: drop-shadow(5px 5px 15px $secondary-shadow);
     }
+  }
+}
+.content-wrapper {
+  min-height: 100vh;
+  .content-body {
+    border-radius: 20px;
+    -webkit-box-shadow: 5px 5px 20px 0px $secondary-shadow;
+    -moz-box-shadow: 5px 5px 20px 0px $secondary-shadow;
+    box-shadow: 5px 5px 20px 0px $secondary-shadow;
+    padding: 20px;
+    min-height: 600px;
   }
 }
