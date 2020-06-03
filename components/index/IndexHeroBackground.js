@@ -4,7 +4,7 @@ export default function IndexHeroBackground() {
   };
 
   return (
-    <div className="hero-bg">
+    <div className="hero-bg" id="home">
       <div className="hero-pattern"></div>
       <div className="container">
         <div className="pt-5 pb-5 flex flex-wrap justify-center h-screen">
