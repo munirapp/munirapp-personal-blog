@@ -1,8 +1,8 @@
 export default function IndexLabsContent() {
   return (
-    <div className="content-wrapper" id="labs">
+    <div className="content-wrapper pb-20" id="labs">
       <div className="content-bg icon-labs"></div>
-      <div className="container pt-5 lg:pt-16">
+      <div className="container pt-5">
         <div className="content-body">
           <div className="title">Labs</div>
           <div className="desc mt-3">

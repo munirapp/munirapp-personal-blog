@@ -125,6 +125,7 @@ body {
 .content-wrapper {
   position: relative;
   min-height: 100vh;
+  border-bottom: 1px solid $secondary-shadow;
   .content-bg {
     position: absolute;
     top: 0px;

@@ -1,8 +1,8 @@
 export default function IndexPortofolioContent() {
   return (
-    <div className="content-wrapper" id="portofolio">
+    <div className="content-wrapper pb-20" id="portofolio">
       <div className="content-bg icon-portofolio"></div>
-      <div className="container pt-5 lg:pt-16">
+      <div className="container pt-5">
         <div className="content-body">
           <div className="title">Portofolio</div>
           <div className="desc mt-3">

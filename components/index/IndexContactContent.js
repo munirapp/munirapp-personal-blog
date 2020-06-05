@@ -1,8 +1,8 @@
 export default function IndexContactContent() {
   return (
-    <div className="content-wrapper" id="contact">
+    <div className="content-wrapper pb-5" id="contact">
       <div className="content-bg icon-contact"></div>
-      <div className="container pt-5 lg:pt-16">
+      <div className="container pt-5">
         <div className="content-body">
           <div className="title">Contact Me</div>
           <div className="desc mt-3">

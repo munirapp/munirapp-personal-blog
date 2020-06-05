@@ -1,8 +1,8 @@
 export default function IndexBlogContent() {
   return (
-    <div className="content-wrapper my-20" id="blog">
+    <div className="content-wrapper pb-20" id="blog">
       <div className="content-bg icon-blog"></div>
-      <div className="container pt-5 lg:pt-16">
+      <div className="container pt-5 ">
         <div className="content-body">
           <div className="title">Blog</div>
           <div className="mt-5 flex flex-wrapper items-center flex-col">
@@ -17,7 +17,7 @@ export default function IndexBlogContent() {
                       />
                     </div>
                     <div className="w-full lg:w-3/4 flex flex-wrapper flex-col p-6">
-                      <span className="article-title text-lg lg:text-3xl">
+                      <span className="article-title text-xl lg:text-4xl">
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit
                       </span>
                       <span className="italic text-sm">
