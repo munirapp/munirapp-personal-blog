@@ -4,7 +4,7 @@ export default function IndexMenuBar() {
     { icon: "/image/dialogue.svg", link: "#blog" },
     { icon: "/image/gallery.svg", link: "#portofolio" },
     { icon: "/image/flasks.svg", link: "#labs" },
-    { icon: "/image/drink.svg", link: "#hiring" },
+    { icon: "/image/drink.svg", link: "#contact" },
   ];
   return (
     <div className="menubar">

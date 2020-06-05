@@ -131,7 +131,7 @@ body {
     right: 5px;
     width: 200px;
     height: 200px;
-    opacity: 0.3;
+    opacity: 0.1;
   }
   .icon-blog {
     background: url("/image/dialogue.svg");
@@ -139,11 +139,26 @@ body {
     background-size: 120px;
     background-repeat: no-repeat;
   }
+  .icon-portofolio {
+    background: url("/image/gallery.svg");
+    background-position: top right;
+    background-size: 120px;
+    background-repeat: no-repeat;
+  }
+  .icon-labs {
+    background: url("/image/flasks.svg");
+    background-position: top right;
+    background-size: 120px;
+    background-repeat: no-repeat;
+  }
+  .icon-contact {
+    background: url("/image/drink.svg");
+    background-position: top right;
+    background-size: 120px;
+    background-repeat: no-repeat;
+  }
   .content-body {
     border-radius: 20px;
-    // -webkit-box-shadow: 5px 5px 20px 0px $secondary-shadow;
-    // -moz-box-shadow: 5px 5px 20px 0px $secondary-shadow;
-    // box-shadow: 5px 5px 20px 0px $secondary-shadow;
     padding: 20px;
     min-height: 600px;
     .title {
@@ -157,14 +172,19 @@ body {
 }
 .article {
   // border: 1px solid $secondary-shadow;
-  img {
-    border-radius: 10px;
-    object-fit: cover;
-  }
+  -webkit-box-shadow: 5px 5px 20px 0px $secondary-shadow;
+  -moz-box-shadow: 5px 5px 20px 0px $secondary-shadow;
+  box-shadow: 5px 5px 20px 0px $secondary-shadow;
+  border-radius: 10px;
+  overflow: hidden;
   width: 100%;
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
   .article-title {
     color: $primary-shadow;
-    font-size: 2rem;
   }
   .article-detail {
     color: $primary-blue;
