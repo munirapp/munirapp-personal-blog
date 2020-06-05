@@ -194,3 +194,43 @@ body {
     }
   }
 }
+.maintenance {
+  background: url("/image/maintenance.webp");
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center center;
+  background-size: 320px;
+  background-repeat: no-repeat;
+}
+.general-footer {
+  position: fixed;
+  bottom: 0;
+  background: white;
+  font-size: 0.9rem;
+  padding: 5px 5px;
+  width: 100%;
+  -webkit-box-shadow: 5px 5px 20px 0px $secondary-shadow;
+  -moz-box-shadow: 5px 5px 20px 0px $secondary-shadow;
+  box-shadow: 5px 5px 20px 0px $secondary-shadow;
+
+  @media only screen and (max-width: $mobile-width) {
+    display: none;
+  }
+
+  p {
+    display: block;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+
+    span {
+      color: red;
+    }
+    a {
+      text-decoration: underline;
+    }
+  }
+}

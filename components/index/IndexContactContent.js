@@ -11,6 +11,7 @@ export default function IndexContactContent() {
             Pariatur autem, sit natus nemo voluptatem ullam dignissimos
             obcaecati quas ex est.
           </div>
+          <div className="maintenance"></div>
         </div>
       </div>
     </div>

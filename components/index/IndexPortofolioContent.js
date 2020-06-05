@@ -11,6 +11,7 @@ export default function IndexPortofolioContent() {
             Molestiae, quas hic ut ratione error distinctio eum non,
             voluptatibus, facilis voluptatum soluta.
           </div>
+          <div className="maintenance"></div>
         </div>
       </div>
     </div>
