@@ -1,3 +1,27 @@
+import { useEffect } from "react";
+
+import iobs from "../../lib/iobs";
+import ImageLazy from "../general/ImageLazy";
+const fallbackImg = "";
+
+const [observer, setElements, entries] = iobs({ threshold: 0.25, root: null });
+
+useEffect(() => {
+  let img = Array.from(document.querySelectorAll(".lazy"));
+  setElements(img);
+}, [setElements]);
+
+useEffect(() => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      let lazyImage = entry.target;
+      lazyImage.src = lazyImage.dataset.src;
+      lazyImage.classList.remove("lazy");
+      observer.unobserve(lazyImage);
+    }
+  });
+}, [entries, observer]);
+
 export default function IndexBlogContent() {
   return (
     <div className="content-wrapper pb-20" id="blog">
@@ -8,13 +32,19 @@ export default function IndexBlogContent() {
           <div className="mt-5 flex flex-wrapper items-center flex-col">
             {Array.from(Array(3)).map((item) => {
               return (
-                <a href="/blog" className="w-full">
+                <a href="/blog" className="w-full" key={item}>
                   <div className="article flex flex-wrap mb-5">
                     <div className="w-full lg:w-1/4">
-                      <img
+                      <ImageLazy
+                        src="http://picsum.photos/200/100"
+                        fallbackSrc={fallbackImg}
+                        isLazy
+                        alt="Image Post"
+                      ></ImageLazy>
+                      {/* <img
                         src="http://picsum.photos/200/100"
                         alt="article photo"
-                      />
+                      /> */}
                     </div>
                     <div className="w-full lg:w-3/4 flex flex-wrapper flex-col p-6">
                       <span className="article-title text-xl lg:text-4xl">
@@ -38,7 +68,7 @@ export default function IndexBlogContent() {
                 </a>
               );
             })}
-            <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded text-lg">
+            <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded text-lg">
               See All Post &#10141;
             </button>
           </div>
