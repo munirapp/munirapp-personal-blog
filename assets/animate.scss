@@ -1,27 +1,17 @@
 :root {
-  --animate-duration: 1s;
-  --animate-delay: 1s;
+  --animate-duration: 0.7s;
+  --animate-delay: 0.7s;
   --desktop-width: 800px;
 }
 .animate__animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
   -webkit-animation-duration: var(--animate-duration);
   animation-duration: var(--animate-duration);
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
 .animate__animated.animate__delay-1s {
-  -webkit-animation-delay: 1s;
-  animation-delay: 1s;
-  -webkit-animation-delay: var(--animate-delay);
-  animation-delay: var(--animate-delay);
-}
-.animate__animated.animate__delay-2s {
-  -webkit-animation-delay: 2s;
-  animation-delay: 2s;
-  -webkit-animation-delay: calc(var(--animate-delay) * 2);
-  animation-delay: calc(var(--animate-delay) * 2);
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
 }
 @-webkit-keyframes zoomIn {
   0% {

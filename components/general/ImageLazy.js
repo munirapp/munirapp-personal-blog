@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 
-function ImageLazy({ src, fallbackSrc, alt }) {
+function ImageLazy({ src, fallbackSrc, alt, isLazy }) {
   return (
     <img
-      src={isLazy ? fallbackSrc : src}
+      src={fallbackSrc}
       alt={alt}
       className={isLazy ? "lazy" : ""}
       data-src={src}

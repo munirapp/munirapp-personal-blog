@@ -1,28 +1,43 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import iobs from "../../lib/iobs";
 import ImageLazy from "../general/ImageLazy";
-const fallbackImg = "";
-
-const [observer, setElements, entries] = iobs({ threshold: 0.25, root: null });
-
-useEffect(() => {
-  let img = Array.from(document.querySelectorAll(".lazy"));
-  setElements(img);
-}, [setElements]);
-
-useEffect(() => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      let lazyImage = entry.target;
-      lazyImage.src = lazyImage.dataset.src;
-      lazyImage.classList.remove("lazy");
-      observer.unobserve(lazyImage);
-    }
-  });
-}, [entries, observer]);
+const fallbackImg = "/image/blur.jpg";
 
 export default function IndexBlogContent() {
+  const [observer, setElements, entries] = iobs({
+    threshold: 0.25,
+    root: null,
+  });
+
+  const [classArticle, setClassArticle] = useState(
+    "article article-lazy flex flex-wrap mb-5"
+  );
+
+  useEffect(() => {
+    let img = Array.from(document.querySelectorAll(".lazy"));
+    let article = Array.from(document.querySelectorAll(".article-lazy"));
+    setElements(img.concat(article));
+  }, [setElements]);
+
+  useEffect(() => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        if (entry.target.classList.value.includes("article-lazy")) {
+          let article = entry.target;
+          setClassArticle(`${classArticle} animate__animated animate__zoomIn`);
+          article.classList.remove("article-lazy");
+          observer.unobserve(article);
+        } else {
+          let lazyImage = entry.target;
+          lazyImage.src = lazyImage.dataset.src;
+          lazyImage.classList.remove("lazy");
+          observer.unobserve(lazyImage);
+        }
+      }
+    });
+  }, [entries, observer]);
+
   return (
     <div className="content-wrapper pb-20" id="blog">
       <div className="content-bg icon-blog"></div>
@@ -32,8 +47,8 @@ export default function IndexBlogContent() {
           <div className="mt-5 flex flex-wrapper items-center flex-col">
             {Array.from(Array(3)).map((item) => {
               return (
-                <a href="/blog" className="w-full" key={item}>
-                  <div className="article flex flex-wrap mb-5">
+                <a href="/blog" className="w-full">
+                  <div className={classArticle}>
                     <div className="w-full lg:w-1/4">
                       <ImageLazy
                         src="http://picsum.photos/200/100"
@@ -41,10 +56,6 @@ export default function IndexBlogContent() {
                         isLazy
                         alt="Image Post"
                       ></ImageLazy>
-                      {/* <img
-                        src="http://picsum.photos/200/100"
-                        alt="article photo"
-                      /> */}
                     </div>
                     <div className="w-full lg:w-3/4 flex flex-wrapper flex-col p-6">
                       <span className="article-title text-xl lg:text-4xl">
