@@ -1,6 +1,6 @@
-export default function IndexContactContent() {
+export default function IndexContactContent({ classExtend }) {
   return (
-    <div className="content-wrapper pb-5" id="contact">
+    <div className={`content-wrapper pb-5 ${classExtend}`} id="contact">
       <div className="content-bg icon-contact"></div>
       <div className="container pt-5">
         <div className="content-body">

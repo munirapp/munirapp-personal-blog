@@ -1,6 +1,6 @@
-export default function IndexLabsContent() {
+export default function IndexLabsContent({ classExtend }) {
   return (
-    <div className="content-wrapper pb-20" id="labs">
+    <div className={`content-wrapper pb-20 ${classExtend}`} id="labs">
       <div className="content-bg icon-labs"></div>
       <div className="container pt-5">
         <div className="content-body">

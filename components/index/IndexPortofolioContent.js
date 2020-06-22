@@ -1,6 +1,6 @@
-export default function IndexPortofolioContent() {
+export default function IndexPortofolioContent({ classExtend }) {
   return (
-    <div className="content-wrapper pb-20" id="portofolio">
+    <div className={`content-wrapper pb-20 ${classExtend}`} id="portofolio">
       <div className="content-bg icon-portofolio"></div>
       <div className="container pt-5">
         <div className="content-body">
