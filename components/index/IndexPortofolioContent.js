@@ -27,12 +27,24 @@ export default function IndexPortofolioContent({ classExtend }) {
               <div className="bg" style={styleBackground[0]}></div>
               <img src="/image/mobilaku.png" alt="mobilaku" />
             </div>
-            <div className="w-full lg:w-2/5">
+            <div className="w-full lg:w-2/5 content-portofolio">
               <h2>Mobilaku.com</h2>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
-              cupiditate illo quia recusandae quasi aliquam ipsa molestiae
-              explicabo ullam eius sequi laudantium fugit sapiente quisquam
-              nesciunt doloribus, repellendus est officia?
+              <h3>2019</h3>
+              <div className="desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
+                cupiditate illo quia recusandae quasi aliquam ipsa molestiae
+                explicabo ullam eius sequi laudantium fugit sapiente quisquam
+                nesciunt doloribus, repellendus est officia?.
+              </div>
+              <h4 className="mt-5">Role</h4>
+              <div className="mt-2 mb-2">
+                <span className="hero-title">Frontend</span>
+              </div>
+              <h4 className="mt-5">Stack</h4>
+              <div className="mt-2 mb-2">
+                <span className="hero-title">Vue JS</span>
+                <span className="hero-title">Nuxt JS</span>
+              </div>
             </div>
           </div>
         </div>
