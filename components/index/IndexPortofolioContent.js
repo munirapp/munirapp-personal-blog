@@ -45,6 +45,7 @@ export default function IndexPortofolioContent({ classExtend }) {
                 <span className="hero-title">Vue JS</span>
                 <span className="hero-title">Nuxt JS</span>
               </div>
+              <h4 className="mt-5">Website</h4>
             </div>
           </div>
         </div>
