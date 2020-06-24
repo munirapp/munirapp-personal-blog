@@ -6,7 +6,6 @@ import IndexMenuBar from "../components/index/IndexMenuBar";
 import IndexHeroBackground from "../components/index/IndexHeroBackground.js";
 import IndexBlogContent from "../components/index/IndexBlogContent";
 import IndexPortofolioContent from "../components/index/IndexPortofolioContent";
-import IndexLabsContent from "../components/index/IndexLabsContent";
 import IndexContactContent from "../components/index/IndexContactContent";
 import GeneralFooter from "../components/general/GeneralFooter";
 
@@ -52,7 +51,6 @@ function Home() {
       <IndexHeroBackground />
       <IndexBlogContent classExtend="lazy-content" />
       <IndexPortofolioContent classExtend="lazy-content" />
-      <IndexLabsContent classExtend="lazy-content" />
       <IndexContactContent classExtend="lazy-content" />
       <GeneralFooter />
     </div>

@@ -12,11 +12,7 @@ body {
 }
 
 .div-flex {
-  @apply flex flex-wrap justify-center;
-}
-
-.div-flex-h-full {
-  @apply div-flex h-screen;
+  @apply flex flex-wrap justify-center my-auto;
 }
 
 // Spesific Layout
@@ -50,6 +46,18 @@ body {
     .title {
       @apply animate__animated animate__fadeIn animate__delay-1s mt-2 mb-3;
     }
+
+    .name {
+      @apply text-xl animate__animated animate__fadeIn animate__delay-1s;
+    }
+
+    .desc {
+      @apply text-center text-xs animate__animated animate__fadeIn animate__delay-1s;
+    }
+  }
+
+  .hero-btn {
+    @apply animate__animated animate__fadeIn animate__delay-1s;
   }
 }
 
@@ -64,6 +72,14 @@ body {
     }
     .hero-desc {
       @apply w-1/2 items-start justify-center;
+
+      .name {
+        @apply text-5xl;
+      }
+
+      .desc {
+        @apply text-base text-left;
+      }
     }
   }
 }

@@ -14,39 +14,12 @@
 // Import Custom Layouts
 @import "layouts.scss";
 
-.hero-bg {
-  .hero-image {
-    max-width: 350px;
-    -webkit-filter: drop-shadow(35px 5px 35px $primary-shadow);
-    filter: drop-shadow(35px 5px 35px $primary-shadow);
-    @media only screen and(max-width:$mobile-width) {
-      max-width: 150px;
-    }
-  }
-  .hero-name {
-    font-size: 3rem;
-    @media only screen and(max-width:$mobile-width) {
-      font-size: 1.8rem;
-    }
-  }
-  .hero-title {
-    font-weight: bold;
-    font-size: 1rem;
-    background: $primary-yellow;
-    padding: 5px 10px;
-    border-radius: 20px;
-    color: $primary-blue;
-    min-width: 100px;
-    text-align: center;
-  }
-}
 .menubar {
   @media only screen and (min-width: $desktop-width) {
     position: fixed;
     background: white;
     border-radius: 10px;
     width: 70px;
-    min-height: 390px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 4;
