@@ -1,0 +1,11 @@
+.yellow {
+  background: $primary-yellow;
+}
+
+.text-blue {
+  color: $primary-blue;
+}
+
+.chip {
+  @apply font-bold text-base py-1 px-2 rounded-full;
+}

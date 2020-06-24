@@ -4,22 +4,15 @@ export default function IndexHeroBackground() {
   };
 
   return (
-    <div className="hero-bg" id="home">
+    <div className="hero-section" id="home">
       <div className="hero-pattern"></div>
       <div className="container">
-        <div className="pt-5 pb-5 flex flex-wrap justify-center h-screen">
-          <div className="w-full lg:w-1/2 flex items-center justify-center">
-            <img
-              className="hero-image animate__animated animate__zoomIn"
-              src="/image/profile.webp"
-              alt="profile photo"
-              loading="lazy"
-            />
+        <div className="div-flex-h-full">
+          <div className="hero-image">
+            <img src="/image/profile.webp" alt="profile photo" loading="lazy" />
           </div>
-          <div className="w-full lg:w-1/2 flex items-center lg:items-start lg:justify-center flex-col text-white">
-            <span className="hero-title mb-4 animate__animated animate__fadeIn animate__delay-1s">
-              Munir AP
-            </span>
+          <div className="hero-desc">
+            <span className="title chip yellow text-blue">Munir AP</span>
             <span className="hero-name animate__animated animate__fadeIn animate__delay-1s">
               Fullstack
             </span>
