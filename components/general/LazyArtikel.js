@@ -34,17 +34,17 @@ function LazyArtikel({ id, link, imageSrc, title, caption, author, date }) {
   return (
     <a href={link} className="w-full">
       <div className={classArticle}>
-        <div className="w-full lg:w-1/4">
+        <div className="article-image">
           <img src={fallbackImg} alt="Image Post" data-src={imageSrc} />
         </div>
-        <div className="w-full lg:w-3/4 flex flex-wrapper flex-col p-6">
-          <span className="article-title text-xl lg:text-4xl">{title}</span>
-          <span className="italic text-sm">{caption}</span>
-          <div className="flex flex-wrap article-detail mt-5 text-sm">
-            <span className="mr-5 font-bold">
+        <div className="article-body">
+          <span className="article-title">{title}</span>
+          <span className="article-caption">{caption}</span>
+          <div className=" article-detail">
+            <span>
               Author: <i>{author}</i>
             </span>
-            <span className="mr-5 font-bold">
+            <span>
               Date: <i>{date}</i>
             </span>
           </div>

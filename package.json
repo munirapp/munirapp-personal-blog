@@ -16,5 +16,8 @@
     "react-dom": "16.13.1",
     "sass": "^1.26.7",
     "tailwindcss": "^1.4.6"
+  },
+  "devDependencies": {
+    "stylelint-config-recommended": "^3.0.0"
   }
 }

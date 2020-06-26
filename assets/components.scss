@@ -7,7 +7,11 @@
 }
 
 .chip {
-  @apply font-bold text-base py-1 px-2 rounded-full;
+  @apply font-bold text-base py-1 px-2 rounded-full mr-2;
+}
+
+.chip-sm {
+  @apply chip text-xs;
 }
 
 .btn {
@@ -16,4 +20,11 @@
 
 .btn-model1 {
   @apply bg-white rounded-full text-blue;
+}
+
+.btn-model2 {
+  @apply bg-transparent font-bold text-blue border border-blue-500 rounded;
+  &:hover {
+    @apply bg-blue-500 text-white border-transparent;
+  }
 }
