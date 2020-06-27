@@ -7,6 +7,10 @@ body {
   @apply bg-white w-full h-screen overflow-x-hidden;
 }
 
+button:focus {
+  outline: none !important;
+}
+
 .container {
   @apply mx-auto max-w-screen-lg;
 }
@@ -90,7 +94,7 @@ body {
 
 .menubar {
   @apply fixed bg-white w-full bottom-0 z-10;
-  height: 70px;
+  height: 60px;
 
   ul {
     @apply flex items-center h-full w-full py-5 px-2 justify-between;
@@ -103,26 +107,6 @@ body {
     li:hover {
       @apply shadow-filter cursor-pointer;
       transform: scale(1.1);
-    }
-  }
-}
-
-.general-footer {
-  @apply fixed bottom-0 bg-white w-full shadow-model1;
-  font-size: 0.9rem;
-  padding: 5px 5px;
-
-  p {
-    display: block;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-
-    span {
-      color: red;
-    }
-    a {
-      text-decoration: underline;
     }
   }
 }
@@ -222,16 +206,11 @@ body {
     @apply relative overflow-hidden w-full;
 
     .bg {
-      @apply flex justify-between items-center blur-filter;
-      height: 500px;
+      @apply hidden;
     }
 
     img {
-      @apply object-cover absolute;
       max-height: 300px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
     }
   }
 
@@ -337,6 +316,18 @@ body {
   .portofolio-section {
     .portofolio-image {
       @apply w-3/5;
+
+      .bg {
+        @apply flex justify-between items-center blur-filter block;
+        height: 500px;
+      }
+
+      img {
+        @apply object-cover absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
 
     .portofolio-content {
@@ -344,6 +335,26 @@ body {
 
       .web {
         @apply text-blue font-bold text-lg;
+      }
+    }
+  }
+
+  .general-footer {
+    @apply fixed bottom-0 bg-white w-full shadow-model1;
+    font-size: 0.9rem;
+    padding: 5px 5px;
+
+    p {
+      display: block;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+
+      span {
+        color: red;
+      }
+      a {
+        text-decoration: underline;
       }
     }
   }

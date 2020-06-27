@@ -9,6 +9,7 @@
     "prod": "npm run build && next export"
   },
   "dependencies": {
+    "@brainhubeu/react-carousel": "^1.19.0",
     "@zeit/next-sass": "^1.0.1",
     "next": "9.4.4",
     "node-sass": "^4.14.1",

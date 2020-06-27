@@ -1,4 +1,3 @@
-// import "tailwindcss/dist/tailwind.css";
 import "../assets/main.scss";
 
 // This default export is required in a new `pages/_app.js` file.

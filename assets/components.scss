@@ -28,3 +28,8 @@
     @apply bg-blue-500 text-white border-transparent;
   }
 }
+
+.BrainhubCarousel__arrows {
+  @apply rounded-full;
+  background-color: $primary-blue !important;
+}

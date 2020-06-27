@@ -5,6 +5,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "tailwindcss/screens";
+// Import Slider css
+@import "../node_modules/@brainhubeu/react-carousel/lib/style.css";
 // Import Custom Varibales
 @import "variables.scss";
 // Import Custom Animation
