@@ -3,7 +3,7 @@ export default function IndexMenuBar() {
     { icon: "/image/user.svg", link: "#home" },
     { icon: "/image/dialogue.svg", link: "#blog" },
     { icon: "/image/gallery.svg", link: "#portofolio" },
-    { icon: "/image/drink.svg", link: "#contact" },
+    { icon: "/image/drink.svg", link: "#coffee" },
   ];
   return (
     <div className="menubar">

@@ -12,8 +12,8 @@ export default function GeneralFooter() {
         </a>
         . Asset Image and Icon by{" "}
         <a href="https://www.freepik.com/" target="__blank">
-          Freepik
-        </a>{" "}
+          Freepik{" "}
+        </a>
         and{" "}
         <a href="https://www.flaticon.com/" target="__blank">
           Flaticon

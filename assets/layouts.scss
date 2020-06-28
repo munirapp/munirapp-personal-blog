@@ -16,7 +16,7 @@ button:focus {
 }
 
 .div-flex {
-  @apply flex flex-wrap justify-center my-auto;
+  @apply flex flex-wrap justify-center mx-auto;
 }
 
 .shadow-model {
@@ -340,7 +340,7 @@ button:focus {
   }
 
   .general-footer {
-    @apply fixed bottom-0 bg-white w-full shadow-model1;
+    @apply fixed bottom-0 bg-white w-full shadow-model1 block;
     font-size: 0.9rem;
     padding: 5px 5px;
 

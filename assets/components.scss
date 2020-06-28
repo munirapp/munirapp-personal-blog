@@ -14,6 +14,22 @@
   @apply chip text-xs;
 }
 
+.card {
+  @apply bg-white p-5 border-gray-800 rounded-lg shadow-lg mr-2 flex;
+
+  .card-content-flex {
+    @apply flex justify-center items-center;
+  }
+
+  .img-btn {
+    max-height: 2rem;
+  }
+
+  &:hover {
+    @apply shadow-xl;
+  }
+}
+
 .btn {
   @apply py-2 px-4 font-bold mr-2;
 }
