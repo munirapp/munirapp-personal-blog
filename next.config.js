@@ -1,6 +1,8 @@
 // test
+require("dotenv").config();
 const withSass = require("@zeit/next-sass");
 const tailwindCss = require("tailwindcss");
+const { API_URL } = process.env;
 module.exports = withSass({
   webpack(config, options) {
     const rules = [
@@ -25,5 +27,8 @@ module.exports = withSass({
         rules: [...config.module.rules, ...rules],
       },
     };
+  },
+  env: {
+    API_URL,
   },
 });

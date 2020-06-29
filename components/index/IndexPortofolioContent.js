@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import Carousel from "@brainhubeu/react-carousel";
 import iobs from "../../lib/iobs";
 
-const {} = dynamic(() => require("@brainhubeu/react-carousel"), { ssr: false });
-
-function IndexPortofolioContent({ classExtend }) {
+function IndexPortofolioContent({ classExtend, listPortofolio }) {
   const fallbackImg = "/image/blur.jpg";
 
   const bgStyles = {
@@ -13,23 +10,6 @@ function IndexPortofolioContent({ classExtend }) {
     "background-position": "center",
     "background-repeat": "no-repeat",
   };
-
-  const styleBackground = [
-    {
-      id: 0,
-      image: "/image/mobilaku.png",
-      title: "Mobilaku.com",
-      year: "2019",
-      desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Dolorem cupiditate illo quia recusandae quasi aliquam ipsa
-      molestiae explicabo ullam eius sequi laudantium fugit
-      sapiente quisquam nesciunt doloribus, repellendus est
-      officia?.`,
-      role: ["Frontend"],
-      stack: ["Vue JS", "Nuxt JS"],
-      website: "http://mobilaku.co.id",
-    },
-  ];
 
   const [observer, setElements, entries] = iobs({
     threshold: 0.25,
@@ -49,7 +29,7 @@ function IndexPortofolioContent({ classExtend }) {
         // Lazyload Background image
         let id = lazyPortofolio.dataset.id;
         let bgPortofolio = lazyPortofolio.querySelector(".bg");
-        bgPortofolio.style.background = `url(${styleBackground[id].image})`;
+        bgPortofolio.style.background = `url(${listPortofolio[id].image})`;
 
         // Lazyload Image Portofolio
         let image = lazyPortofolio.querySelector("img");
@@ -74,7 +54,7 @@ function IndexPortofolioContent({ classExtend }) {
             systems, REST API Management and so on.
           </div>
           <Carousel autoPlay={4000} infinite stopAutoPlayOnHover arrows>
-            {styleBackground.map((item) => {
+            {listPortofolio.map((item) => {
               return (
                 <div
                   className="portofolio-section portofolio-lazy"
@@ -131,10 +111,6 @@ function IndexPortofolioContent({ classExtend }) {
       </div>
     </div>
   );
-}
-
-export async function getStaticProps() {
-  const res = await fetch("http://localhost");
 }
 
 export default IndexPortofolioContent;

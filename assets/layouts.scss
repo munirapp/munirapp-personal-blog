@@ -326,12 +326,12 @@ button:focus {
   }
 
   .portofolio-section {
+    @apply w-full;
     .portofolio-image {
       @apply w-3/5;
 
       .bg {
-        @apply flex justify-between items-center blur-filter block;
-        height: 500px;
+        @apply flex justify-between items-center blur-filter block h-full;
       }
 
       img {

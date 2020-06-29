@@ -1,15 +1,26 @@
 import { useEffect } from "react";
 import iobs from "../lib/iobs";
-
 import Head from "next/head";
-import IndexMenuBar from "../components/index/IndexMenuBar";
-import IndexHeroBackground from "../components/index/IndexHeroBackground.js";
-import IndexBlogContent from "../components/index/IndexBlogContent";
-import IndexPortofolioContent from "../components/index/IndexPortofolioContent";
-import IndexCoffeeContent from "../components/index/IndexCoffeeContent";
-import GeneralFooter from "../components/general/GeneralFooter";
+import dynamic from "next/dynamic";
 
-function Home() {
+const IndexMenuBar = dynamic(() => import("../components/index/IndexMenuBar"));
+const IndexHeroBackground = dynamic(() =>
+  import("../components/index/IndexHeroBackground")
+);
+const IndexBlogContent = dynamic(() =>
+  import("../components/index/IndexBlogContent")
+);
+const IndexPortofolioContent = dynamic(() =>
+  import("../components/index/IndexPortofolioContent")
+);
+const IndexCoffeeContent = dynamic(() =>
+  import("../components/index/IndexCoffeeContent")
+);
+const GeneralFooter = dynamic(() =>
+  import("../components/general/GeneralFooter")
+);
+
+function Home({ listPortofolio }) {
   const [observer, setElements, entries] = iobs({
     threshold: 0.25,
     root: null,
@@ -43,11 +54,20 @@ function Home() {
       <IndexMenuBar />
       <IndexHeroBackground />
       <IndexBlogContent classExtend="lazy-content" />
-      <IndexPortofolioContent classExtend="lazy-content" />
+      <IndexPortofolioContent
+        classExtend="lazy-content"
+        listPortofolio={listPortofolio}
+      />
       <IndexCoffeeContent classExtend="lazy-content" />
       <GeneralFooter />
     </div>
   );
 }
+
+export const getStaticProps = async () => {
+  const res = await fetch(`${process.env.API_URL}/portofolio`);
+  const listPortofolio = await res.json();
+  return { props: { listPortofolio } };
+};
 
 export default Home;
