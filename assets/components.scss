@@ -15,14 +15,14 @@
 }
 
 .card {
-  @apply bg-white p-5 border-gray-800 rounded-lg shadow-lg mr-2 flex;
+  @apply bg-white p-5 border-gray-800 rounded-lg shadow-lg mr-2 mb-5 flex;
 
   .card-content-flex {
     @apply flex justify-center items-center;
   }
 
   .img-btn {
-    max-height: 2rem;
+    max-width: 100px;
   }
 
   &:hover {
@@ -48,4 +48,13 @@
 .BrainhubCarousel__arrows {
   @apply rounded-full;
   background-color: $primary-blue !important;
+}
+
+@screen md {
+  .card {
+    .img-btn {
+      @apply max-w-full;
+      max-height: 2rem;
+    }
+  }
 }

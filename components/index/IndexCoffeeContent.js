@@ -1,4 +1,40 @@
-export default function IndexContactContent({ classExtend }) {
+import { useState, useEffect, lazy } from "react";
+import iobs from "../../lib/iobs";
+
+export default function IndexCoffeeContent({ classExtend }) {
+  const fallbackImg = "/image/blur.jpg";
+
+  const listChannel = [
+    { link: "https://www.patreon.com/munirapp", name: "patreon" },
+    { link: "https://karyakarsa.com/munirapp", name: "karyakarsa" },
+    { link: "https://www.buymeacoffee.com/munirapp", name: "buymeacoffee" },
+  ];
+
+  const [observer, setElements, entries] = iobs({
+    threshold: 0.25,
+    root: null,
+  });
+
+  useEffect(() => {
+    let channel = Array.from(document.querySelectorAll(".channel-lazy"));
+    setElements(channel);
+  }, [setElements]);
+
+  useEffect(() => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        let lazyChannel = entry.target;
+
+        // Lazyload Image Portofolio
+        let image = lazyChannel.querySelector("img");
+        image.src = image.dataset.src;
+
+        lazyChannel.classList.remove("channel-lazy");
+        observer.unobserve(lazyChannel);
+      }
+    });
+  }, [entries, observer]);
+
   return (
     <div className={`content-wrapper pb-5 ${classExtend}`} id="coffee">
       <div className="content-bg icon-contact"></div>
@@ -6,42 +42,44 @@ export default function IndexContactContent({ classExtend }) {
         <div className="content-body">
           <div className="title">Coffee Shop</div>
           <div className="desc mt-3">
-            Programming, developing, and debugging is sometimes a tiring
+            Sometimes Programming, developing, and debugging is a tiring
             process. Like coffee for programmers, a cup of appreciation can make
             me even more excited to write code better. If you are helped by what
             I have done, you can give me a cup of appreciation on the following
             channel
           </div>
-          <div className="div-flex mt-12">
+          <div className="div-flex mt-5 lg:mt-12">
+            {listChannel.map((item, index) => {
+              return (
+                <a href={item.link} target="__blank" key={index}>
+                  <div className="card channel-lazy">
+                    <div className="card-content-flex">
+                      <img
+                        className="img-btn"
+                        src={fallbackImg}
+                        data-src={`/image/channel/${item.name}.png`}
+                        alt={item.name}
+                      />
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+
+          <div className="div-flex mt-5">
+            <span className="text-2xl">Need Contact me?</span>
+          </div>
+
+          <div className="div-flex mt-5">
             <div className="card">
               <div className="card-content-flex">
-                <img
-                  className="img-btn"
-                  src="/image/patreon.png"
-                  alt="patreon"
-                />
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-content-flex">
-                <img
-                  className="img-btn"
-                  src="/image/karyakarsa.png"
-                  alt="karyakarsa"
-                />
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-content-flex">
-                <img
-                  className="img-btn"
-                  src="/image/buymeacoffee.svg"
-                  alt="karyakarsa"
-                />
+                <a href="mailto:softwaremakassar@gmail.com" target="__blank">
+                  <span>📥 softwaremakassar@gmail.com</span>
+                </a>
               </div>
             </div>
           </div>
-          {/* <div className="maintenance"></div> */}
         </div>
       </div>
     </div>

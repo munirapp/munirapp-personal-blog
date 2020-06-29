@@ -19,7 +19,7 @@ export default function IndexHeroBackground() {
               experimenting on new things.
             </span>
             <span className="mt-5 mb-5 font-bold desc">Find me at:</span>
-            <div className="div-flex">
+            <div>
               <div className="w-full">
                 <a href="https://github.com/munirapp" target="__blank">
                   <button className="btn btn-model1 hero-btn">Github</button>

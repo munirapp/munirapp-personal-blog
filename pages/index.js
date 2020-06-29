@@ -24,18 +24,11 @@ function Home() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         let lazyContent = entry.target;
-        console.log(lazyContent);
-        let descContent = lazyContent.querySelector(".desc");
-        let maintenanceContent = lazyContent.querySelector(".maintenance");
 
+        let descContent = lazyContent.querySelector(".desc");
         if (descContent) {
           descContent.classList.add("animate__animated");
           descContent.classList.add("animate__zoomIn");
-        }
-
-        if (maintenanceContent) {
-          maintenanceContent.classList.add("animate__animated");
-          maintenanceContent.classList.add("animate__zoomIn");
         }
       }
     });

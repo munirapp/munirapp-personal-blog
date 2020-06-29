@@ -161,7 +161,7 @@ button:focus {
     }
 
     .desc {
-      @apply mt-6;
+      @apply mt-3 text-xs;
     }
   }
 }
@@ -194,9 +194,6 @@ button:focus {
         @apply mr-5 font-bold;
       }
     }
-  }
-  &:hover {
-    @apply shadow-model1;
   }
 }
 
@@ -257,6 +254,10 @@ button:focus {
   background-repeat: no-repeat;
 }
 
+.general-footer {
+  @apply hidden;
+}
+
 // Screen Medium Configuration
 @screen md {
   .hero-section {
@@ -305,6 +306,17 @@ button:focus {
 
       .article-title {
         @apply text-3xl;
+      }
+    }
+    &:hover {
+      @apply shadow-model1;
+    }
+  }
+
+  .content-wrapper {
+    .content-body {
+      .desc {
+        @apply text-base mt-6;
       }
     }
   }

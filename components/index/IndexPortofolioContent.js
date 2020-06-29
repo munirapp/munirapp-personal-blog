@@ -1,18 +1,79 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Carousel from "@brainhubeu/react-carousel";
+import iobs from "../../lib/iobs";
 
 const {} = dynamic(() => require("@brainhubeu/react-carousel"), { ssr: false });
 
 export default function IndexPortofolioContent({ classExtend }) {
-  const [styleBackground, setStyleBackground] = useState([
+  const fallbackImg = "/image/blur.jpg";
+
+  const bgStyles = {
+    "background-size": "cover",
+    "background-position": "center",
+    "background-repeat": "no-repeat",
+  };
+
+  const styleBackground = [
     {
-      background: "url(/image/mobilaku.png)",
-      "background-size": "cover",
-      "background-position": "center",
-      "background-repeat": "no-repeat",
+      id: 0,
+      image: "/image/mobilaku.png",
+      title: "Mobilaku.com",
+      year: "2019",
+      desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Dolorem cupiditate illo quia recusandae quasi aliquam ipsa
+      molestiae explicabo ullam eius sequi laudantium fugit
+      sapiente quisquam nesciunt doloribus, repellendus est
+      officia?.`,
+      role: ["Frontend"],
+      stack: ["Vue JS", "Nuxt JS"],
+      website: "http://mobilaku.co.id",
     },
-  ]);
+    {
+      id: 1,
+      image: "/image/mobilaku.png",
+      title: "Mobilaku.com",
+      year: "2019",
+      desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Dolorem cupiditate illo quia recusandae quasi aliquam ipsa
+      molestiae explicabo ullam eius sequi laudantium fugit
+      sapiente quisquam nesciunt doloribus, repellendus est
+      officia?.`,
+      role: ["Frontend"],
+      stack: ["Vue JS", "Nuxt JS"],
+      website: "http://mobilaku.co.id",
+    },
+  ];
+
+  const [observer, setElements, entries] = iobs({
+    threshold: 0.25,
+    root: null,
+  });
+
+  useEffect(() => {
+    let portofolio = Array.from(document.querySelectorAll(".portofolio-lazy"));
+    setElements(portofolio);
+  }, [setElements]);
+
+  useEffect(() => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        let lazyPortofolio = entry.target;
+
+        // Lazyload Background image
+        let id = lazyPortofolio.dataset.id;
+        let bgPortofolio = lazyPortofolio.querySelector(".bg");
+        bgPortofolio.style.background = `url(${styleBackground[id].image})`;
+
+        // Lazyload Image Portofolio
+        let image = lazyPortofolio.querySelector("img");
+        image.src = image.dataset.src;
+
+        lazyPortofolio.classList.remove("portofolio-lazy");
+        observer.unobserve(lazyPortofolio);
+      }
+    });
+  }, [entries, observer]);
 
   return (
     <div className={`content-wrapper pb-20 ${classExtend}`} id="portofolio">
@@ -27,93 +88,58 @@ export default function IndexPortofolioContent({ classExtend }) {
             systems, REST API Management and so on.
           </div>
           <Carousel autoPlay={4000} infinite stopAutoPlayOnHover arrows>
-            <div className="portofolio-section">
-              <div className="portofolio-image">
-                <div className="bg" style={styleBackground[0]}></div>
-                <img src="/image/mobilaku.png" alt="mobilaku" />
-              </div>
-              <div className="portofolio-content">
-                <h2>Mobilaku.com</h2>
-                <h3>2019</h3>
-                <div className="portofolio-desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolorem cupiditate illo quia recusandae quasi aliquam ipsa
-                  molestiae explicabo ullam eius sequi laudantium fugit sapiente
-                  quisquam nesciunt doloribus, repellendus est officia?.
-                </div>
-                <h4>Role</h4>
-                <span className="chip-sm bg-blue-500 text-white">Frontend</span>
-                <h4>Stack</h4>
-                <span className="chip-sm bg-green-500 text-white">Vue JS</span>
-                <span className="chip-sm bg-green-500 text-white">Nuxt JS</span>
-                <h4>Website</h4>
-                <a
-                  href="http://mobilaku.co.id"
-                  className="web"
-                  target="__blank"
+            {styleBackground.map((item) => {
+              return (
+                <div
+                  className="portofolio-section portofolio-lazy"
+                  key={item.id}
+                  data-id={item.id}
                 >
-                  http://mobilaku.co.id
-                </a>
-              </div>
-            </div>
-            <div className="portofolio-section">
-              <div className="portofolio-image">
-                <div className="bg" style={styleBackground[0]}></div>
-                <img src="/image/mobilaku.png" alt="mobilaku" />
-              </div>
-              <div className="portofolio-content">
-                <h2>Mobilaku.com</h2>
-                <h3>2019</h3>
-                <div className="portofolio-desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolorem cupiditate illo quia recusandae quasi aliquam ipsa
-                  molestiae explicabo ullam eius sequi laudantium fugit sapiente
-                  quisquam nesciunt doloribus, repellendus est officia?.
+                  <div className="portofolio-image">
+                    <div
+                      className="bg"
+                      style={{ ...bgStyles, background: `url(${fallbackImg})` }}
+                    ></div>
+                    <img
+                      src={fallbackImg}
+                      data-src={item.image}
+                      alt={item.title}
+                    />
+                  </div>
+                  <div className="portofolio-content">
+                    <h2>{item.title}</h2>
+                    <h3>{item.year}</h3>
+                    <div className="portofolio-desc">{item.desc}</div>
+                    <h4>Role</h4>
+                    {item.role.map((role, index) => {
+                      return (
+                        <span
+                          className="chip-sm bg-blue-500 text-white"
+                          key={index}
+                        >
+                          {role}
+                        </span>
+                      );
+                    })}
+                    <h4>Stack</h4>
+                    {item.stack.map((stack, index) => {
+                      return (
+                        <span
+                          className="chip-sm bg-green-500 text-white"
+                          key={index}
+                        >
+                          {stack}
+                        </span>
+                      );
+                    })}
+                    <h4>Website</h4>
+                    <a href={item.website} className="web" target="__blank">
+                      {item.website}
+                    </a>
+                  </div>
                 </div>
-                <h4>Role</h4>
-                <span className="chip-sm bg-blue-500 text-white">Frontend</span>
-                <h4>Stack</h4>
-                <span className="chip-sm bg-green-500 text-white">Vue JS</span>
-                <span className="chip-sm bg-green-500 text-white">Nuxt JS</span>
-                <h4>Website</h4>
-                <a
-                  href="http://mobilaku.co.id"
-                  className="web"
-                  target="__blank"
-                >
-                  http://mobilaku.co.id
-                </a>
-              </div>
-            </div>
-            <div className="portofolio-section">
-              <div className="portofolio-image">
-                <div className="bg" style={styleBackground[0]}></div>
-                <img src="/image/mobilaku.png" alt="mobilaku" />
-              </div>
-              <div className="portofolio-content">
-                <h2>Mobilaku.com</h2>
-                <h3>2019</h3>
-                <div className="portofolio-desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolorem cupiditate illo quia recusandae quasi aliquam ipsa
-                  molestiae explicabo ullam eius sequi laudantium fugit sapiente
-                  quisquam nesciunt doloribus, repellendus est officia?.
-                </div>
-                <h4>Role</h4>
-                <span className="chip-sm bg-blue-500 text-white">Frontend</span>
-                <h4>Stack</h4>
-                <span className="chip-sm bg-green-500 text-white">Vue JS</span>
-                <span className="chip-sm bg-green-500 text-white">Nuxt JS</span>
-                <h4>Website</h4>
-                <a
-                  href="http://mobilaku.co.id"
-                  className="web"
-                  target="__blank"
-                >
-                  http://mobilaku.co.id
-                </a>
-              </div>
-            </div>
+              );
+            })}
           </Carousel>
         </div>
       </div>
