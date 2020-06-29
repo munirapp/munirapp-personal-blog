@@ -5,7 +5,7 @@ import iobs from "../../lib/iobs";
 
 const {} = dynamic(() => require("@brainhubeu/react-carousel"), { ssr: false });
 
-export default function IndexPortofolioContent({ classExtend }) {
+function IndexPortofolioContent({ classExtend }) {
   const fallbackImg = "/image/blur.jpg";
 
   const bgStyles = {
@@ -17,20 +17,6 @@ export default function IndexPortofolioContent({ classExtend }) {
   const styleBackground = [
     {
       id: 0,
-      image: "/image/mobilaku.png",
-      title: "Mobilaku.com",
-      year: "2019",
-      desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Dolorem cupiditate illo quia recusandae quasi aliquam ipsa
-      molestiae explicabo ullam eius sequi laudantium fugit
-      sapiente quisquam nesciunt doloribus, repellendus est
-      officia?.`,
-      role: ["Frontend"],
-      stack: ["Vue JS", "Nuxt JS"],
-      website: "http://mobilaku.co.id",
-    },
-    {
-      id: 1,
       image: "/image/mobilaku.png",
       title: "Mobilaku.com",
       year: "2019",
@@ -146,3 +132,9 @@ export default function IndexPortofolioContent({ classExtend }) {
     </div>
   );
 }
+
+export async function getStaticProps() {
+  const res = await fetch("http://localhost");
+}
+
+export default IndexPortofolioContent;
