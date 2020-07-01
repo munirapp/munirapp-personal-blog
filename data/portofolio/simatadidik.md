@@ -8,6 +8,6 @@ molestiae explicabo ullam eius sequi laudantium fugit
 sapiente quisquam nesciunt doloribus, repellendus est
 officia?."
 role: "Backend,Frontend"
-stack: "PHP,JQuery"
+stack: "PHP,JQuery,MySQL"
 website: "http://simatadidik.id"
 ---

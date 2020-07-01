@@ -1,4 +1,4 @@
-export default function Blog() {
+export default function Custom404() {
   return (
     <div>
       <div className="container">

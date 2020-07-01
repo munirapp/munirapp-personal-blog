@@ -22,9 +22,11 @@ export default function IndexBlogContent({ classExtend, listFeaturedArtikel }) {
                 ></LazyArtikel>
               );
             })}
-            <button className="btn btn-model2 mt-12">
-              See All Post &#10141;
-            </button>
+            <a href="/blog" target="__blank">
+              <button className="btn btn-model2 mt-12">
+                See All Post &#10141;
+              </button>
+            </a>
           </div>
         </div>
       </div>

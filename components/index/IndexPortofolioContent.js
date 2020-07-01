@@ -91,7 +91,7 @@ function IndexPortofolioContent({ classExtend, listPortofolio }) {
                     {item.stack.map((stack, index) => {
                       return (
                         <span
-                          className="chip-sm bg-yellow-600 text-white"
+                          className="chip-sm bg-yellow-500 text-blue"
                           key={index}
                         >
                           {stack}
