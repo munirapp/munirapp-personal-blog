@@ -80,7 +80,7 @@ function IndexPortofolioContent({ classExtend, listPortofolio }) {
                     {item.role.map((role, index) => {
                       return (
                         <span
-                          className="chip-sm bg-blue-500 text-white"
+                          className="chip-sm bg-blue-700 text-white"
                           key={index}
                         >
                           {role}
@@ -91,7 +91,7 @@ function IndexPortofolioContent({ classExtend, listPortofolio }) {
                     {item.stack.map((stack, index) => {
                       return (
                         <span
-                          className="chip-sm bg-green-500 text-white"
+                          className="chip-sm bg-yellow-600 text-white"
                           key={index}
                         >
                           {stack}

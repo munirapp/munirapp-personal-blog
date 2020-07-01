@@ -1,39 +1,6 @@
 import LazyArtikel from "../general/LazyArtikel";
 
-const listArtikel = [
-  {
-    id: 1,
-    link: "/blog",
-    imageSrc: "http://picsum.photos/200/100",
-    title: "Lorem ipsum, dolor sit amet consectetur adipisicing elit",
-    caption:
-      "Maxime perferendis consectetur rem vitae veritatis deleniti porro namsunt consequuntur expedita sequi, assumenda excepturi aliquam dolor adipisci, quae illo",
-    author: "Munir AP",
-    date: "2020-01-01",
-  },
-  {
-    id: 2,
-    link: "/blog",
-    imageSrc: "http://picsum.photos/200/100",
-    title: "Lorem ipsum, dolor sit amet consectetur adipisicing elit",
-    caption:
-      "Maxime perferendis consectetur rem vitae veritatis deleniti porro namsunt consequuntur expedita sequi, assumenda excepturi aliquam dolor adipisci, quae illo",
-    author: "Munir AP",
-    date: "2020-01-01",
-  },
-  {
-    id: 3,
-    link: "/blog",
-    imageSrc: "http://picsum.photos/200/100",
-    title: "Lorem ipsum, dolor sit amet consectetur adipisicing elit",
-    caption:
-      "Maxime perferendis consectetur rem vitae veritatis deleniti porro namsunt consequuntur expedita sequi, assumenda excepturi aliquam dolor adipisci, quae illo",
-    author: "Munir AP",
-    date: "2020-01-01",
-  },
-];
-
-export default function IndexBlogContent({ classExtend }) {
+export default function IndexBlogContent({ classExtend, listFeaturedArtikel }) {
   return (
     <div className={`content-wrapper pb-20 ${classExtend}`} id="blog">
       <div className="content-bg icon-blog"></div>
@@ -41,15 +8,15 @@ export default function IndexBlogContent({ classExtend }) {
         <div className="content-body">
           <div className="title">Blog</div>
           <div className="mt-5 flex flex-wrapper items-center flex-col">
-            {listArtikel.map((item) => {
+            {listFeaturedArtikel.map((item) => {
               return (
                 <LazyArtikel
                   key={item.id}
                   id={item.id}
                   link={item.link}
-                  imageSrc={item.imageSrc}
+                  imageSrc={item.image}
                   title={item.title}
-                  caption={item.caption}
+                  caption={item.desc}
                   author={item.author}
                   date={item.date}
                 ></LazyArtikel>

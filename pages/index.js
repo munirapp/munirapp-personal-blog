@@ -20,7 +20,7 @@ const GeneralFooter = dynamic(() =>
   import("../components/general/GeneralFooter")
 );
 
-function Home({ listPortofolio }) {
+function Home({ listPortofolio, listFeaturedArtikel }) {
   const [observer, setElements, entries] = iobs({
     threshold: 0.25,
     root: null,
@@ -53,7 +53,10 @@ function Home({ listPortofolio }) {
       </Head>
       <IndexMenuBar />
       <IndexHeroBackground />
-      <IndexBlogContent classExtend="lazy-content" />
+      <IndexBlogContent
+        classExtend="lazy-content"
+        listFeaturedArtikel={listFeaturedArtikel}
+      />
       <IndexPortofolioContent
         classExtend="lazy-content"
         listPortofolio={listPortofolio}
@@ -65,9 +68,15 @@ function Home({ listPortofolio }) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch(`${process.env.API_URL}/portofolio`);
-  const listPortofolio = await res.json();
-  return { props: { listPortofolio } };
+  const getPortofolio = await fetch(`${process.env.API_URL}/portofolio`);
+  const getFeaturedArtikel = await fetch(
+    `${process.env.API_URL}/featured-artikel`
+  );
+
+  const listPortofolio = await getPortofolio.json();
+  const listFeaturedArtikel = await getFeaturedArtikel.json();
+
+  return { props: { listPortofolio, listFeaturedArtikel } };
 };
 
 export default Home;
