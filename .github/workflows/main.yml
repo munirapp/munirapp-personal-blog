@@ -18,6 +18,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Serve Development Server
+        run: npm run dev
       - name: Build & Export
         run: |
           npm install
