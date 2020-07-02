@@ -18,12 +18,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Install Dependencies
+        run: npm install
       - name: Serve Development Server
         run: npm run dev
       - name: Build & Export
-        run: |
-          npm install
-          npm run prod
+        run: npm run prod
       - name: Clone Production Repo & Update
         run: |
           git clone https://munirapp:${{secrets.TOKEN_GITHUB}}@github.com/munirapp/munirapp.github.io
