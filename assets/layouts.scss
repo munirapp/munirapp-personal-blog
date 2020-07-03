@@ -11,8 +11,17 @@ button:focus {
   outline: none !important;
 }
 
+.dark-theme {
+  background-color: black !important;
+  color: white !important;
+}
+
 .container {
   @apply mx-auto max-w-screen-lg;
+
+  &.dark {
+    @apply dark-theme;
+  }
 }
 
 .div-flex {
