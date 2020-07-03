@@ -1,10 +1,16 @@
 // General Layout
+
+.theme-color {
+  background-color: var(--theme-color, white);
+  color: var(--theme-text-color, black);
+}
+
 html,
 body {
   margin: 0 auto;
   font-family: "Hind", sans-serif;
   scroll-behavior: smooth;
-  @apply bg-white w-full h-screen overflow-x-hidden;
+  @apply w-full h-screen overflow-x-hidden theme-color;
 }
 
 button:focus {
