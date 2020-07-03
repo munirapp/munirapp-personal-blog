@@ -53,7 +53,8 @@ button:focus {
     $secondary-blue,
     $primary-blue
   );
-  @apply relative min-h-screen;
+  @apply relative flex flex-col justify-center;
+  height: calc(100vh - 60px);
 
   .hero-pattern {
     width: 300px;
@@ -67,7 +68,7 @@ button:focus {
     @apply flex w-full justify-center items-center;
 
     img {
-      @apply w-48 animate__animated animate__zoomIn;
+      @apply w-32 animate__animated animate__zoomIn;
     }
   }
 
@@ -113,7 +114,6 @@ button:focus {
 
 .content-wrapper {
   @apply relative min-h-screen;
-  border-bottom: 1px solid $secondary-shadow;
 
   .content-bg {
     @apply absolute top-0;
@@ -156,7 +156,7 @@ button:focus {
 
       &::before {
         @apply mr-3 text-3xl;
-        content: "\01F7E1";
+        content: "🌕";
       }
     }
 
@@ -261,6 +261,7 @@ button:focus {
 // Screen Medium Configuration
 @screen md {
   .hero-section {
+    @apply min-h-screen;
     .hero-image {
       @apply w-1/2;
       img {

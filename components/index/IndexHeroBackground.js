@@ -2,7 +2,7 @@ export default function IndexHeroBackground() {
   return (
     <div className="hero-section" id="home">
       <div className="hero-pattern"></div>
-      <div className="container flex h-screen">
+      <div className="container flex">
         <div className="div-flex">
           <div className="hero-image">
             <img src="/image/profile.webp" alt="profile photo" loading="lazy" />

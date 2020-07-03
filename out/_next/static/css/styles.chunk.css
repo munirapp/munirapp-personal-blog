@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css2?family=Hind:wght@400;600&display=swap);
+@charset "UTF-8";
 /*! purgecss start ignore */
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
@@ -33506,7 +33507,10 @@ button:focus {
 .hero-section {
   background-image: linear-gradient(270deg, #002ea1, #026ddf, #002ea1);
   position: relative;
-  min-height: 100vh; }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100vh - 60px); }
 
 .hero-section .hero-pattern {
   width: 300px;
@@ -33526,7 +33530,7 @@ button:focus {
   align-items: center; }
 
 .hero-section .hero-image img {
-  width: 12rem;
+  width: 8rem;
   -webkit-animation-duration: var(--animate-duration);
   animation-duration: var(--animate-duration);
   -webkit-animation-fill-mode: both;
@@ -33623,8 +33627,7 @@ button:focus {
 
 .content-wrapper {
   position: relative;
-  min-height: 100vh;
-  border-bottom: 1px solid #bdc3c7; }
+  min-height: 100vh; }
 
 .content-wrapper .content-bg {
   position: absolute;
@@ -33672,7 +33675,7 @@ button:focus {
 .content-wrapper .content-body .title::before {
   margin-right: 0.75rem;
   font-size: 1.875rem;
-  content: "\1F7E1"; }
+  content: "\1F315"; }
 
 .content-wrapper .content-body .desc {
   margin-top: 0.75rem;
@@ -33781,6 +33784,8 @@ button:focus {
   display: none; }
 
 @media (min-width: 768px) {
+  .hero-section {
+    min-height: 100vh; }
   .hero-section .hero-image {
     width: 50%; }
   .hero-section .hero-image img {
