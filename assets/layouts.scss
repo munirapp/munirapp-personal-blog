@@ -17,17 +17,8 @@ button:focus {
   outline: none !important;
 }
 
-.dark-theme {
-  background-color: black !important;
-  color: white !important;
-}
-
 .container {
   @apply mx-auto max-w-screen-lg;
-
-  &.dark {
-    @apply dark-theme;
-  }
 }
 
 .div-flex {
@@ -192,8 +183,7 @@ button:focus {
   .article-body {
     @apply w-full flex flex-wrap flex-col pt-5;
     .article-title {
-      @apply text-2xl;
-      color: $primary-shadow;
+      @apply text-2xl theme-color;
     }
     .article-capiton {
       @apply italic;
@@ -201,12 +191,8 @@ button:focus {
     .article-detail {
       @apply flex flex-wrap  mt-5 text-sm;
       color: $primary-blue;
-      i {
-        @apply not-italic;
-        color: $primary-shadow;
-      }
       span {
-        @apply mr-5 font-bold;
+        @apply chip theme-color;
       }
     }
   }
@@ -257,6 +243,27 @@ button:focus {
   }
 }
 
+.theme-button-text {
+  @apply hidden;
+}
+
+.blog-wrapper {
+  @apply pt-24;
+  @apply theme-color;
+  .blog-header {
+    @apply w-full text-center;
+    .title {
+      @apply text-4xl font-bold;
+    }
+    .desc {
+      @apply text-xl;
+    }
+  }
+  .blog-body {
+    @apply p-5;
+  }
+}
+
 .maintenance {
   background: url("/image/maintenance.webp");
   width: 100%;
@@ -271,6 +278,10 @@ button:focus {
 
 .general-footer {
   @apply hidden;
+}
+
+.menu-blog {
+  @apply flex items-center p-5 fixed z-10 theme-color w-full;
 }
 
 // Screen Medium Configuration
@@ -385,5 +396,9 @@ button:focus {
         text-decoration: underline;
       }
     }
+  }
+
+  .theme-button-text {
+    @apply inline;
   }
 }

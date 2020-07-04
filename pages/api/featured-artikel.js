@@ -12,7 +12,7 @@ export default (req, res) => {
       fs.readFileSync(path.join("data/artikel", file))
     );
     const { title, slug, image, date, desc, author } = parsedMarkdown.data;
-    const link = `${date}-${slug}`;
+    const link = `blog/${date}-${slug}`;
     listArtikel.push({ id, title, slug, image, date, desc, author, link });
     counter++;
   });

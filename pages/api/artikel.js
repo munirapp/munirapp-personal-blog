@@ -3,19 +3,18 @@ import matter from "gray-matter";
 import path from "path";
 
 export default (req, res) => {
-  let listPortofolio = [];
+  let listArtikel = [];
   let counter = 0;
-  const fileList = fs.readdirSync("data/portofolio");
+  const fileList = fs.readdirSync("data/artikel").reverse();
   fileList.forEach((file) => {
     const id = counter;
     const parsedMarkdown = matter(
-      fs.readFileSync(path.join("data/portofolio", file))
+      fs.readFileSync(path.join("data/artikel", file))
     );
-    const { image, title, year, desc, website } = parsedMarkdown.data;
-    const role = parsedMarkdown.data.role.split(",");
-    const stack = parsedMarkdown.data.stack.split(",");
-    listPortofolio.push({ id, image, title, year, desc, website, role, stack });
+    const { title, slug, image, date, desc, author } = parsedMarkdown.data;
+    const link = `blog/${date}-${slug}`;
+    listArtikel.push({ id, title, slug, image, date, desc, author, link });
     counter++;
   });
-  res.end(JSON.stringify(listPortofolio));
+  res.send(listArtikel);
 };

@@ -5,7 +5,7 @@ export default function ButtonTheme() {
     buttonStyle: {
       className: "btn btn-model3",
       text: "Night Mode",
-      icon: "☀️",
+      icon: "🌙",
     },
     elementStyle: { color: "white", textColor: "black" },
   };
@@ -13,9 +13,9 @@ export default function ButtonTheme() {
     buttonStyle: {
       className: "btn btn-model1",
       text: "Light Mode",
-      icon: "🌙",
+      icon: "☀️",
     },
-    elementStyle: { color: "#121212", textColor: "#fff" },
+    elementStyle: { color: "#17212b", textColor: "#ecf0f1" },
   };
 
   const [buttonStyle, setButtonStyle] = useState(light_theme.buttonStyle);
@@ -48,7 +48,8 @@ export default function ButtonTheme() {
 
   return (
     <button className={buttonStyle.className} onClick={handleClick}>
-      {buttonStyle.icon} <span>{buttonStyle.text}</span>
+      {buttonStyle.icon}
+      <span className="theme-button-text"> {buttonStyle.text}</span>
     </button>
   );
 }
