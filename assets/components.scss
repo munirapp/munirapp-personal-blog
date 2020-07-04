@@ -45,6 +45,10 @@
   }
 }
 
+.btn-model3 {
+  @apply text-white rounded-full bg-gray-900;
+}
+
 .BrainhubCarousel__arrows {
   @apply rounded-full;
   background-color: $primary-blue !important;
