@@ -6,9 +6,9 @@ function IndexPortofolioContent({ classExtend, listPortofolio }) {
   const fallbackImg = "/image/blur.jpg";
 
   const bgStyles = {
-    "background-size": "cover",
-    "background-position": "center",
-    "background-repeat": "no-repeat",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
   };
 
   const [observer, setElements, entries] = iobs({

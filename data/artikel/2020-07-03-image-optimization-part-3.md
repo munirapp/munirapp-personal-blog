@@ -8,5 +8,5 @@ molestiae explicabo ullam eius sequi laudantium fugit
 sapiente quisquam nesciunt doloribus, repellendus est
 officia?."
 author: "Munir AP"
-slug: "image-optimization-part3"
+slug: "image-optimization-part-3"
 ---

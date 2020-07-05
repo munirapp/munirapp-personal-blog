@@ -1,9 +1,17 @@
+.blue {
+  background: $primary-blue;
+}
+
 .yellow {
   background: $primary-yellow;
 }
 
 .text-blue {
   color: $primary-blue;
+}
+
+.border-blue {
+  border-color: $primary-blue;
 }
 
 .chip {
@@ -39,9 +47,9 @@
 }
 
 .btn-model2 {
-  @apply bg-transparent font-bold text-blue border border-blue-500 rounded;
+  @apply bg-transparent font-bold text-blue border border-blue rounded;
   &:hover {
-    @apply bg-blue-500 text-white border-transparent;
+    @apply blue text-white border-transparent;
   }
 }
 

@@ -1,5 +1,6 @@
 import BlogHeader from "../../components/general/BlogHeader";
 import LazyArtikel from "../../components/general/LazyArtikel";
+import GeneralFooter from "../../components/general/GeneralFooter";
 
 const Blog = ({ listArtikel }) => {
   return (
@@ -29,6 +30,7 @@ const Blog = ({ listArtikel }) => {
           </div>
         </div>
       </div>
+      <GeneralFooter />
     </div>
   );
 };

@@ -4,7 +4,7 @@ export default function ButtonTheme() {
   const light_theme = {
     buttonStyle: {
       className: "btn btn-model3",
-      text: "Night Mode",
+      text: "Dark Mode",
       icon: "🌙",
     },
     elementStyle: { color: "white", textColor: "black" },
