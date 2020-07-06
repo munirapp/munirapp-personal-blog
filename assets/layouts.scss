@@ -13,9 +13,22 @@ body {
   @apply w-full h-screen overflow-x-hidden theme-color;
 }
 
-button:focus {
-  outline: none !important;
-  user-select: none;
+a {
+  -webkit-touch-callout: none !important; /* iOS Safari */
+  -webkit-user-select: none !important; /* Safari */
+  -khtml-user-select: none !important; /* Konqueror HTML */
+  -moz-user-select: none !important; /* Old versions of Firefox */
+  -ms-user-select: none !important; /* Internet Explorer/Edge */
+  user-select: none !important; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+button {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+li {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .container {
