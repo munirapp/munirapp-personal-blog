@@ -268,7 +268,7 @@ button:focus {
     }
   }
   .blog-body {
-    @apply p-5 text-xl;
+    @apply p-5 text-lg pb-24;
   }
 }
 
@@ -419,6 +419,10 @@ button:focus {
       img {
         height: 400px;
       }
+    }
+
+    .blog-body {
+      @apply text-xl;
     }
   }
 }

@@ -5,11 +5,16 @@ import iobs from "../../lib/iobs";
 function IndexPortofolioContent({ classExtend, listPortofolio }) {
   const fallbackImg = "/image/blur.jpg";
 
-  const bgStyles = {
-    backgroundSize: "cover",
+  const extendbgStyles = {
+    backgroundSize: "contain",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
   };
+
+  const [bgStyle, setBgStyle] = useState({
+    background: `url(${fallbackImg})`,
+    ...extendbgStyles,
+  });
 
   const [observer, setElements, entries] = iobs({
     threshold: 0.25,
@@ -30,6 +35,10 @@ function IndexPortofolioContent({ classExtend, listPortofolio }) {
         let id = lazyPortofolio.dataset.id;
         let bgPortofolio = lazyPortofolio.querySelector(".bg");
         bgPortofolio.style.background = `url(${listPortofolio[id].image})`;
+        bgPortofolio.style.backgroundSize = extendbgStyles.backgroundSize;
+        bgPortofolio.style.backgroundPosition =
+          extendbgStyles.backgroundPosition;
+        bgPortofolio.style.backgroundRepeat = extendbgStyles.backgroundRepeat;
 
         // Lazyload Image Portofolio
         let image = lazyPortofolio.querySelector("img");
@@ -64,7 +73,10 @@ function IndexPortofolioContent({ classExtend, listPortofolio }) {
                   <div className="portofolio-image">
                     <div
                       className="bg"
-                      style={{ ...bgStyles, background: `url(${fallbackImg})` }}
+                      style={{
+                        background: `url(${fallbackImg})`,
+                        ...extendbgStyles,
+                      }}
                     ></div>
                     <img
                       src={fallbackImg}
