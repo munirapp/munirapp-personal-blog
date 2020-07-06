@@ -33497,6 +33497,9 @@ a {
 button {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
+button:focus {
+  outline: none; }
+
 li {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
