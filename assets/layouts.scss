@@ -1,10 +1,16 @@
 // General Layout
+
+.theme-color {
+  background-color: var(--theme-color, white);
+  color: var(--theme-text-color, black);
+}
+
 html,
 body {
   margin: 0 auto;
   font-family: "Hind", sans-serif;
   scroll-behavior: smooth;
-  @apply bg-white w-full h-screen overflow-x-hidden;
+  @apply w-full h-screen overflow-x-hidden theme-color;
 }
 
 button:focus {
@@ -177,21 +183,19 @@ button:focus {
   .article-body {
     @apply w-full flex flex-wrap flex-col pt-5;
     .article-title {
-      @apply text-2xl;
-      color: $primary-shadow;
+      @apply text-2xl theme-color;
     }
     .article-capiton {
       @apply italic;
     }
     .article-detail {
-      @apply flex flex-wrap  mt-5 text-sm;
+      @apply flex flex-wrap  mt-5;
       color: $primary-blue;
-      i {
-        @apply not-italic;
-        color: $primary-shadow;
-      }
       span {
-        @apply mr-5 font-bold;
+        @apply chip theme-color text-xs;
+      }
+      i {
+        @apply mr-2 text-xs;
       }
     }
   }
@@ -242,6 +246,32 @@ button:focus {
   }
 }
 
+.theme-button-text {
+  @apply hidden;
+}
+
+.blog-wrapper {
+  @apply pt-24 theme-color;
+
+  .blog-header {
+    @apply w-full text-center;
+
+    .title {
+      @apply text-2xl font-bold p-3;
+    }
+    .desc {
+      @apply text-sm;
+    }
+
+    img {
+      @apply pt-2 pb-2 w-full h-64 object-cover;
+    }
+  }
+  .blog-body {
+    @apply p-5 text-lg pb-24;
+  }
+}
+
 .maintenance {
   background: url("/image/maintenance.webp");
   width: 100%;
@@ -256,6 +286,10 @@ button:focus {
 
 .general-footer {
   @apply hidden;
+}
+
+.menu-blog {
+  @apply flex items-center p-5 fixed z-10 theme-color w-full;
 }
 
 // Screen Medium Configuration
@@ -322,10 +356,6 @@ button:focus {
     }
   }
 
-  .general-footer {
-    @apply hidden;
-  }
-
   .portofolio-section {
     @apply w-full;
     .portofolio-image {
@@ -353,7 +383,8 @@ button:focus {
   }
 
   .general-footer {
-    @apply fixed bottom-0 bg-white w-full shadow-model1 block;
+    border-top: 1px solid;
+    @apply fixed bottom-0 w-full border-gray-400 block theme-color;
     font-size: 0.9rem;
     padding: 5px 5px;
 
@@ -369,6 +400,29 @@ button:focus {
       a {
         text-decoration: underline;
       }
+    }
+  }
+
+  .theme-button-text {
+    @apply inline;
+  }
+
+  .blog-wrapper {
+    .blog-header {
+      .title {
+        @apply text-4xl;
+      }
+      .desc {
+        @apply text-xl;
+      }
+
+      img {
+        height: 400px;
+      }
+    }
+
+    .blog-body {
+      @apply text-xl;
     }
   }
 }

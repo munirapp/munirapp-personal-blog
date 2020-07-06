@@ -42,10 +42,12 @@ function LazyArtikel({ id, link, imageSrc, title, caption, author, date }) {
           <span className="article-caption">{caption}</span>
           <div className=" article-detail">
             <span>
-              Author: <i>{author}</i>
+              <i>Author: </i>
+              {author}
             </span>
             <span>
-              Date: <i>{date}</i>
+              <i>Date: </i>
+              {date}
             </span>
           </div>
         </div>
