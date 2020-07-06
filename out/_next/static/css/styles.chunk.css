@@ -33480,7 +33480,8 @@ body {
   color: var(--theme-text-color, black); }
 
 button:focus {
-  outline: none !important; }
+  outline: none !important;
+  user-select: none; }
 
 .container {
   margin-left: auto;

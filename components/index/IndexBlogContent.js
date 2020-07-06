@@ -4,7 +4,7 @@ export default function IndexBlogContent({ classExtend, listFeaturedArtikel }) {
   return (
     <div className={`content-wrapper pb-20 ${classExtend}`} id="blog">
       <div className="content-bg icon-blog"></div>
-      <div className="container pt-5 ">
+      <div className="container pt-5">
         <div className="content-body">
           <div className="title">Blog</div>
           <div className="mt-5 flex flex-wrapper items-center flex-col">

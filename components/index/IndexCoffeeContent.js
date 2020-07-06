@@ -5,9 +5,24 @@ export default function IndexCoffeeContent({ classExtend }) {
   const fallbackImg = "/image/blur.jpg";
 
   const listChannel = [
-    { link: "https://www.patreon.com/munirapp", name: "patreon" },
-    { link: "https://karyakarsa.com/munirapp", name: "karyakarsa" },
-    { link: "https://www.buymeacoffee.com/munirapp", name: "buymeacoffee" },
+    {
+      link: "https://www.patreon.com/munirapp",
+      name: "patreon",
+      image:
+        "https://res.cloudinary.com/softwaremakassar/image/upload/v1594008989/munirapp.github.io/channel/patreon_njelf2.webp",
+    },
+    {
+      link: "https://karyakarsa.com/munirapp",
+      name: "karyakarsa",
+      image:
+        "https://res.cloudinary.com/softwaremakassar/image/upload/v1594008989/munirapp.github.io/channel/karyakarsa_eakslf.webp",
+    },
+    {
+      link: "https://www.buymeacoffee.com/munirapp",
+      name: "buymeacoffee",
+      image:
+        "https://res.cloudinary.com/softwaremakassar/image/upload/v1594008987/munirapp.github.io/channel/buymeacoffee_p1iqks.webp",
+    },
   ];
 
   const [observer, setElements, entries] = iobs({
@@ -57,7 +72,7 @@ export default function IndexCoffeeContent({ classExtend }) {
                       <img
                         className="img-btn"
                         src={fallbackImg}
-                        data-src={`/image/channel/${item.name}.png`}
+                        data-src={item.image}
                         alt={item.name}
                       />
                     </div>

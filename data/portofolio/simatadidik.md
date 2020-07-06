@@ -1,5 +1,5 @@
 ---
-image: "/image/simatadidik.png"
+image: "https://res.cloudinary.com/softwaremakassar/image/upload/c_scale,w_500/v1594008707/munirapp.github.io/portofolio/simatadidik_iaqnd6.webp"
 title: "Simatadidik"
 year: "2019"
 desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.
