@@ -312,6 +312,26 @@ li {
     ul {
       list-style: inside;
     }
+
+    hr {
+      @apply mt-2 mb-5;
+    }
+
+    table {
+      @apply mt-5 mb-5;
+      width: 100%;
+
+      th {
+        border: 1px solid;
+      }
+
+      tr {
+        td {
+          @apply p-2;
+          border: 1px solid;
+        }
+      }
+    }
   }
 }
 

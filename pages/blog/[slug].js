@@ -18,6 +18,10 @@ class BlogDetail extends Component {
     document.querySelectorAll("pre code").forEach((block) => {
       hljs.highlightBlock(block);
     });
+
+    document.querySelectorAll("input[type=checkbox]").forEach((list) => {
+      list.parentElement.style.listStyle = "none";
+    });
   }
 
   render() {

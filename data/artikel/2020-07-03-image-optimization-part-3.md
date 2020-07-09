@@ -82,3 +82,9 @@ Line
 - [x] Write the press release
 - [ ] Update the website
 - [ ] Contact the media
+
+| Syntax | Description  |
+| ------ | ------------ |
+| Apple  | Apple Fruits |
+| Orange | Orange Juice |
+| Grape  | Wine Drink   |
