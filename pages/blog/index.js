@@ -1,4 +1,4 @@
-import BlogHeader from "../../components/general/BlogHeader";
+import BlogHeader from "../../components/blog/BlogHeader";
 import LazyArtikel from "../../components/general/LazyArtikel";
 import GeneralFooter from "../../components/general/GeneralFooter";
 
