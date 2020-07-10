@@ -33843,6 +33843,19 @@ li {
   font-size: 1.125rem;
   padding-bottom: 6rem; }
 
+.blog-wrapper .blog-body .lazy-code {
+  font-size: 0.875rem;
+  --text-opacity: 1;
+  color: #000;
+  color: rgba(0, 0, 0, var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: #e2e8f0;
+  background-color: rgba(226, 232, 240, var(--bg-opacity));
+  padding: 1.25rem;
+  margin-bottom: 0.5rem;
+  max-width: 100%;
+  overflow-x: hidden; }
+
 .blog-wrapper .blog-body div > p > code {
   padding: 0.25rem;
   padding-left: 1.25rem;

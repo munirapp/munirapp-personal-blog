@@ -288,6 +288,12 @@ li {
   .blog-body {
     @apply p-5 text-lg pb-24;
 
+    .lazy-code {
+      @apply text-sm text-black bg-gray-300 p-5 mb-2;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
     & div > p > code {
       @apply p-1 pl-5 mt-5 mb-5 block text-base;
       border-left: 3px solid;
