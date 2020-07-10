@@ -8,9 +8,7 @@ import marked from "marked";
 
 import BlogHeader from "../../components/blog/BlogHeader";
 import GeneralFooter from "../../components/general/GeneralFooter";
-const BlogContent = dynamic(() => import("../../components/blog/BlogContent"), {
-  ssr: false,
-});
+const BlogContent = dynamic(() => import("../../components/blog/BlogContent"));
 
 const BlogDetail = ({ content, meta }) => {
   return (
