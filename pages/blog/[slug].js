@@ -31,7 +31,16 @@ class BlogDetail extends Component {
       <div>
         <Head>
           <title>{meta.title}</title>
+          <meta name="author" content={meta.author} />
           <meta name="description" content={meta.desc} />
+          <meta
+            name="og:url"
+            content={`https://munirapp.github.io/blog/${meta.date}-${meta.slug}`}
+          />
+          <meta property="og:type" content="article" />
+          <meta name="og:title" content={meta.title} />
+          <meta name="og:description" content={meta.desc} />
+          <meta name="og:image" content={meta.image} />
         </Head>
 
         <BlogHeader linkBack="/blog" textBack="Back to Blog" />
@@ -60,16 +69,6 @@ class BlogDetail extends Component {
     );
   }
 }
-
-// const BlogSlug = ({ slug, content, meta }) => {
-//   document.querySelectorAll("pre code").forEach((block) => {
-//     hljs.highlightBlock(block);
-//   });
-
-//   return (
-
-//   );
-// };
 
 export const getStaticPaths = async () => {
   const files = fs.readdirSync("data/artikel");
