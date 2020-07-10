@@ -29,7 +29,6 @@ const BlogDetail = ({ content, meta }) => {
         <meta property="og:image" content={meta.image} />
       </Head>
 
-      <BlogContent meta={meta} />
       <BlogHeader linkBack="/blog" textBack="Back to Blog" />
 
       <div className="blog-wrapper">
@@ -45,7 +44,7 @@ const BlogDetail = ({ content, meta }) => {
           />
         </div>
 
-        <div className="containter">
+        <div className="container">
           <BlogContent content={content} />
         </div>
       </div>
