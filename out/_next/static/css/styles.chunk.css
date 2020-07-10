@@ -33843,6 +33843,48 @@ li {
   font-size: 1.125rem;
   padding-bottom: 6rem; }
 
+.blog-wrapper .blog-body div > p > code {
+  padding: 0.25rem;
+  padding-left: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  display: block;
+  font-size: 1rem;
+  border-left: 3px solid; }
+
+.blog-wrapper .blog-body .hljs {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem; }
+
+.blog-wrapper .blog-body h1 {
+  font-size: 3rem; }
+
+.blog-wrapper .blog-body h2 {
+  font-size: 2.25rem; }
+
+.blog-wrapper .blog-body h3 {
+  font-size: 1.875rem; }
+
+.blog-wrapper .blog-body ul {
+  list-style: inside; }
+
+.blog-wrapper .blog-body hr {
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem; }
+
+.blog-wrapper .blog-body table {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  width: 100%; }
+
+.blog-wrapper .blog-body table th {
+  border: 1px solid; }
+
+.blog-wrapper .blog-body table tr td {
+  padding: 0.5rem;
+  border: 1px solid; }
+
 .maintenance {
   background: url("/image/maintenance.webp");
   width: 100%;
