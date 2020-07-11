@@ -6,19 +6,6 @@ const withPWA = require("next-pwa");
 const tailwindCss = require("tailwindcss");
 const { API_URL } = process.env;
 
-const getAllBlogRoutes = async () => {
-  let exportMap = {};
-  const allBlogRoutes = await (await fetch(`${API_URL}/artikel`)).json();
-  allBlogRoutes.foreEach((item) => {
-    exportMap[item.link] = {
-      page: "/blog/[slug]",
-      query: { slug: `${item.date}-${item.slug}` },
-    };
-  });
-
-  return exportMap;
-};
-
 module.exports = withPlugins(
   [
     [
@@ -50,17 +37,18 @@ module.exports = withPlugins(
         },
       },
     ],
-    [withPWA, { pwa: { dest: "public" } }],
+    [
+      withPWA,
+      {
+        pwa: {
+          dest: "public",
+        },
+      },
+    ],
   ],
   {
     env: {
       API_URL,
-    },
-    exportPathMap: async function (
-      defaultPathMap,
-      { dev, dir, outDir, distDir, buildId }
-    ) {
-      return { ...getAllBlogRoutes };
     },
   }
 );
