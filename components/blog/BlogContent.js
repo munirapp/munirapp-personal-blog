@@ -34,39 +34,4 @@ const BlogContent = ({ content }) => {
   );
 };
 
-// class BlogContent extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   componentDidMount() {
-//     // document.querySelectorAll("pre code").forEach((block) => {
-//     //   highlightBlock(block);
-//     // });
-
-//     document.querySelectorAll("pre").forEach((code) => {
-//       code.classList.add("lazy-code");
-//     });
-
-//     document.querySelectorAll("input[type=checkbox]").forEach((list) => {
-//       list.parentElement.style.listStyle = "none";
-//     });
-//   }
-
-//   render() {
-//     const [observer, setElements, entries] = iobs({
-//       threshold: 0.25,
-//       root: null,
-//     });
-
-//     const { content } = this.props;
-
-//     return (
-//       <div className="blog-body">
-//         <div dangerouslySetInnerHTML={{ __html: content }}></div>
-//       </div>
-//     );
-//   }
-// }
-
 export default BlogContent;
