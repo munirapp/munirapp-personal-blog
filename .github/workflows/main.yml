@@ -24,6 +24,7 @@ jobs:
         run: |
           git clone https://munirapp:${{secrets.TOKEN_GITHUB}}@github.com/munirapp/munirapp.github.io
           rm -rf munirapp.github.io/*
+          ls munirapp.github.io/*
           cp -r ./out/* munirapp.github.io/
           touch munirapp.github.io/.nojekyll
           ls -all
