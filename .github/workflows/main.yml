@@ -32,5 +32,5 @@ jobs:
           git config --global user.name "Munir AP"
           git add . 
           git commit -m "update"
-          git push origin master
+          git push origin main
         working-directory: ./munirapp.github.io
