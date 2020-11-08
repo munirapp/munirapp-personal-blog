@@ -81,7 +81,7 @@ if (!self.define) {
     });
   };
 }
-define("./sw.js",['./workbox-b90066a8'], function (workbox) { 'use strict';
+define("./sw.js",['./workbox-f88dbe3b'], function (workbox) { 'use strict';
 
   /**
   * Welcome to your Workbox-powered service worker!
@@ -98,31 +98,10 @@ define("./sw.js",['./workbox-b90066a8'], function (workbox) { 'use strict';
   importScripts();
   workbox.skipWaiting();
   workbox.clientsClaim();
-  /**
-   * The precacheAndRoute() method efficiently caches and responds to
-   * requests for URLs in the manifest.
-   * See https://goo.gl/S9QRab
-   */
-
-  workbox.precacheAndRoute([{
-    "url": "/_next/static/runtime/amp.js",
-    "revision": "928ccca026f583450a075efc991608ff"
-  }, {
-    "url": "/_next/static/runtime/main.js",
-    "revision": "c51b92979d094aea982e7185abc109a4"
-  }, {
-    "url": "/_next/static/runtime/polyfills.js",
-    "revision": "516c3d4deeff70783126396a5a14d34e"
-  }, {
-    "url": "/_next/static/runtime/react-refresh.js",
-    "revision": "9d11ea7095b60a828f2db49ed1004ade"
-  }, {
-    "url": "/_next/static/runtime/webpack.js",
-    "revision": "d10faaa6c2847598153cd52a68522500"
-  }], {
-    "ignoreURLParametersMatching": [/ts/]
-  });
-  workbox.cleanupOutdatedCaches();
+  workbox.registerRoute(/.*/i, new workbox.NetworkOnly({
+    "cacheName": "dev",
+    plugins: []
+  }), 'GET');
 
 });
 //# sourceMappingURL=sw.js.map
