@@ -30,7 +30,7 @@ jobs:
         run: |
           git config --global user.email "softwaremakassar.gmail.com"
           git config --global user.name "Munir AP"
-          git add . 
+          git add . --allow-empty
           git commit -m "update"
           git push origin main
         working-directory: ./munirapp.github.io
