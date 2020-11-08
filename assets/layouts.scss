@@ -288,6 +288,10 @@ li {
   .blog-body {
     @apply p-5 text-lg pb-24;
 
+    p {
+      @apply mt-5 mb-2;
+    }
+
     .lazy-code {
       @apply text-sm text-black bg-gray-300 p-5 mb-2;
       max-width: 100%;
@@ -312,7 +316,10 @@ li {
     }
 
     h3 {
-      @apply text-3xl;
+      @apply text-3xl mt-5;
+      &::before {
+        content: "# ";
+      }
     }
 
     ul {
@@ -337,6 +344,18 @@ li {
           border: 1px solid;
         }
       }
+    }
+
+    em {
+      @apply mx-1 text-gray-600;
+    }
+
+    a {
+      @apply mx-1 underline text-blue-700;
+    }
+
+    blockquote {
+      @apply mx-2 text-2xl italic text-center;
     }
   }
 }
