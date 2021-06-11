@@ -90921,6 +90921,12 @@ li {
   text-align: center;
 }
 
+.blog-wrapper .blog-article {
+  padding: 1.25rem;
+  font-size: 1.125rem;
+  padding-bottom: 6rem;
+}
+
 .maintenance {
   background: url("/image/maintenance.webp");
   width: 100%;
@@ -91111,6 +91117,10 @@ li {
   }
 
   .blog-wrapper .blog-body {
+    font-size: 1.25rem;
+  }
+
+  .blog-wrapper .blog-article {
     font-size: 1.25rem;
   }
 }
