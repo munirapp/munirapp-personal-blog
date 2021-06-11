@@ -12,7 +12,7 @@ const Blog = ({ listArtikel }) => {
             <div className="title">Blog</div>
             <div className="desc">Read All Blog Posts</div>
           </div>
-          <div className="blog-body">
+          <div className="blog-article">
             {listArtikel.map((item) => {
               return (
                 <LazyArtikel

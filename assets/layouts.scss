@@ -358,6 +358,9 @@ li {
       @apply mx-2 text-2xl italic text-center;
     }
   }
+  .blog-article {
+    @apply p-5 text-lg pb-24;
+  }
 }
 
 .maintenance {
@@ -510,6 +513,10 @@ li {
     }
 
     .blog-body {
+      @apply text-xl;
+    }
+
+    .blog-article {
       @apply text-xl;
     }
   }
