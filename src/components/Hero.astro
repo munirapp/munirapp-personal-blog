@@ -1,0 +1,52 @@
+---
+import { Icon } from 'astro-icon'
+
+const { src = '/my-profile.png' } = Astro.props
+---
+
+<section class="hero my-2">
+  <div class="container">
+    <div class="grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
+      <div class="flex flex-col items-center gap-8 md:items-start">
+        <h1 class="text-center text-6xl md:text-left lg:text-8xl">
+          <slot><span class="text-gradient">Code</span> Crafted with Cares</slot>
+        </h1>
+        <div class="flex flex-col gap-3 min-[500px]:flex-row">
+          <a class="button has-icon color-primary" href="https://www.linkedin.com/in/munirapp/" target="_blank">
+            <Icon name="tabler:brand-linkedin" />
+            More about me
+          </a>
+          <a class="button has-icon color-secondary" href="https://cal.com/munirapp/30min?duration=30" target="_blank">
+            <Icon name="ic:baseline-calendar-today" />
+            Discuss with me
+          </a>
+        </div>
+      </div>
+      <div class="gradient-shadow hidden lg:block">
+        <img src={src} alt="" decoding="async" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .text-gradient {
+    background: linear-gradient(315deg, var(--secondary-200) 25%, var(--primary-400));
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  :global(.darkmode .text-gradient) {
+    background: linear-gradient(315deg, var(--primary-400) 25%, var(--secondary-400));
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gradient-shadow {
+    img {
+      filter: drop-shadow(2px 2px 0px var(--secondary-200)) drop-shadow(4px 4px 0px var(--primary-400));
+    }
+  }
+</style>

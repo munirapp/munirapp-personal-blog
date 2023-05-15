@@ -1,0 +1,70 @@
+---
+import fs from 'node:fs'
+import { fileURLToPath } from 'url'
+import { dirname, join as pathJoin } from 'path'
+
+import * as matter from 'gray-matter'
+
+// @ts-ignore
+import { Card } from 'accessible-astro-components'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+const latestYear = new Date().getFullYear()
+
+const latestArticleDir = pathJoin(__dirname, '../articles', `${latestYear}`)
+
+const latestItems = fs
+  .readdirSync(latestArticleDir)
+  .map((item) => matter.default(fs.readFileSync(pathJoin(latestArticleDir, item))))
+  .map((item) => ({ title: item.data.title, url: item.data.url, body: item.data.body }))
+  .slice(0, 3)
+
+console.log('latestItems', latestItems)
+
+interface Posts {
+  title: string
+  url: string
+  body: string
+}
+---
+
+<div>
+  <section class="mb-8 mt-12">
+    <div class="space-content container">
+      <h2 class="text-4 xl mb-4">Latest Articles</h2>
+    </div>
+  </section>
+  <section class="mb-12">
+    <div class="container">
+      <ul class="my-3">
+        {
+          latestItems.map((post: Posts) => (
+            <li>
+              <Card title={post.title} url={post.url}>
+                {post.body.substring(0, 100)}...
+              </Card>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</div>
+
+<style lang="scss">
+  ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 4rem;
+
+    @media (min-width: 550px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 2rem;
+    }
+
+    @media (min-width: 950px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
