@@ -20,8 +20,6 @@ const latestItems = fs
   .map((item) => ({ title: item.data.title, url: item.data.url, body: item.data.body }))
   .slice(0, 3)
 
-console.log('latestItems', latestItems)
-
 interface Posts {
   title: string
   url: string
