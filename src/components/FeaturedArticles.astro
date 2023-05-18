@@ -3,17 +3,14 @@ import fs from 'node:fs'
 import { fileURLToPath } from 'url'
 import { dirname, join as pathJoin } from 'path'
 
+import type { Posts } from '@interfaces/index'
+
+// @ts-ignore
 import { Card } from 'accessible-astro-components'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const featuredItems = JSON.parse(fs.readFileSync(pathJoin(__dirname, '../assets/featuredArticles.json')).toString())
-
-interface Posts {
-  title: string
-  url: string
-  body: string
-}
 ---
 
 <div>
