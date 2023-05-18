@@ -1,8 +1,23 @@
 ---
+import fs from 'node:fs'
+import { fileURLToPath } from 'url'
+import { dirname, join as pathJoin } from 'path'
+
 import Navigation from '@components/Navigation.astro'
 // @ts-ignore
 import { SkipLinks } from 'accessible-astro-components'
 import { Icon } from 'astro-icon'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+const articleDir = pathJoin(__dirname, '../articles')
+
+const currentYear = new Date().getFullYear()
+
+const yearCategories = fs
+  .readdirSync(pathJoin(articleDir))
+  .map((item) => ({ year: item, url: `/blog/${item}` }))
+  .reverse()
 ---
 
 <header>
@@ -14,21 +29,16 @@ import { Icon } from 'astro-icon'
     <li class="menu-item has-dropdown">
       <button aria-haspopup="true" aria-expanded="false">Blog</button>
       <ul class="dropdown-menu">
-        <li class="submenu-item">
-          <a href="/blog/2023">2023 (Latest)</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/blog/2022">2022</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/blog/2021">2021</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/blog/2020">2020</a>
-        </li>
-        <li class="submenu-item">
-          <a href="/blog/2019">2019</a>
-        </li>
+        {
+          yearCategories.map((categories) => (
+            <li class="submenu-item">
+              <a href={categories.url}>
+                {categories.year}
+                {+categories.year === +currentYear ? `(Latest)` : ''}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </li>
     <li class="menu-item type-icon">
