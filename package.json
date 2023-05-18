@@ -32,5 +32,8 @@
       "prettier-plugin-tailwindcss"
     ],
     "pluginSearchDirs": false
+  },
+  "dependencies": {
+    "@astrojs/ts-plugin": "^1.0.6"
   }
 }
