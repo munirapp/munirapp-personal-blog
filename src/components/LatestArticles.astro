@@ -4,9 +4,10 @@ import { fileURLToPath } from 'url'
 import { dirname, join as pathJoin } from 'path'
 
 import * as matter from 'gray-matter'
-
 // @ts-ignore
 import { Card } from 'accessible-astro-components'
+
+import type { Posts } from '@interfaces/index'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -17,14 +18,8 @@ const latestArticleDir = pathJoin(__dirname, '../articles', `${latestYear}`)
 const latestItems = fs
   .readdirSync(latestArticleDir)
   .map((item) => matter.default(fs.readFileSync(pathJoin(latestArticleDir, item))))
-  .map((item) => ({ title: item.data.title, url: item.data.url, body: item.data.body }))
+  .map((item) => ({ title: item.data.title, url: item.data.url, description: item.data.description }))
   .slice(0, 3)
-
-interface Posts {
-  title: string
-  url: string
-  body: string
-}
 ---
 
 <div>
@@ -40,7 +35,7 @@ interface Posts {
           latestItems.map((post: Posts) => (
             <li>
               <Card title={post.title} url={post.url}>
-                {post.body.substring(0, 100)}...
+                {post.description.substring(0, 100)}...
               </Card>
             </li>
           ))

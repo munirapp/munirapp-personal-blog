@@ -26,7 +26,7 @@ const featuredItems = JSON.parse(fs.readFileSync(pathJoin(__dirname, '../assets/
           featuredItems.map((post: Posts) => (
             <li>
               <Card title={post.title} url={post.url}>
-                {post.body.substring(0, 100)}...
+                {post.description.substring(0, 100)}...
               </Card>
             </li>
           ))

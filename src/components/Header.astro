@@ -30,11 +30,11 @@ const yearCategories = fs
       <button aria-haspopup="true" aria-expanded="false">Blog</button>
       <ul class="dropdown-menu">
         {
-          yearCategories.map((categories) => (
+          yearCategories.map((category) => (
             <li class="submenu-item">
-              <a href={categories.url}>
-                {categories.year}
-                {+categories.year === +currentYear ? `(Latest)` : ''}
+              <a href={category.url}>
+                {category.year}
+                {+category.year === +currentYear ? `(Latest)` : ''}
               </a>
             </li>
           ))
