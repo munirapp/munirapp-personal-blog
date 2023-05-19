@@ -1,0 +1,90 @@
+---
+import fs from 'node:fs'
+import { fileURLToPath } from 'url'
+import { dirname, join as pathJoin } from 'path'
+
+import * as matter from 'gray-matter'
+// @ts-ignore
+import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
+
+import type { Posts, AstroGetStaticPathsParams } from '@interfaces/index'
+import DefaultLayout from '../../../layouts/DefaultLayout.astro'
+
+export async function getStaticPaths({ paginate }: AstroGetStaticPathsParams) {
+  const __dirname = dirname(fileURLToPath(import.meta.url))
+
+  const articleDir = pathJoin(__dirname, '../../../articles')
+
+  const yearCategories = fs
+    .readdirSync(pathJoin(articleDir))
+    .map((item) => ({ year: item, url: `/blog/${item}` }))
+    .reverse()
+
+  const staticPaths = yearCategories
+    .filter((category) => {
+      const postFiles = fs
+        .readdirSync(pathJoin(articleDir, category.year))
+        .filter((file) => file.split('.')[1] === 'mdx')
+      if (postFiles.length) return true
+    })
+    .map((category) => {
+      const postFiles = fs
+        .readdirSync(pathJoin(articleDir, category.year))
+        .filter((file) => file.split('.')[1] === 'mdx')
+      return postFiles.map((postFilename) => {
+        const post = matter.default(fs.readFileSync(pathJoin(articleDir, category.year, postFilename)))
+        const data = {
+          params: { post: post.data.slug, year: category.year },
+          props: { post: { ...post.data, content: post.content } },
+        }
+
+        return data
+      })
+    })
+
+  return staticPaths
+}
+
+const { post } = Astro.props
+const { year } = Astro.params
+---
+
+<DefaultLayout title={post.title} description={post.body} url={post.title}>
+  <div class="container">
+    <div class="mt-12">
+      <Breadcrumbs>
+        <BreadcrumbsItem href="/" label="Home" />
+        <BreadcrumbsItem href="/" label="Blog" />
+        <BreadcrumbsItem href={`/blog/${year}`} label={year} />
+        <BreadcrumbsItem currentPage={true} label={post.title} />
+      </Breadcrumbs>
+    </div>
+  </div>
+  <section class="my-12">
+    <div class="container">
+      <h1>{post.title}</h1><br />
+    </div>
+  </section>
+  <section class="my-12">
+    <div class="container">
+      {post.content}
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="scss">
+  ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 4rem;
+
+    @media (min-width: 550px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 2rem;
+    }
+
+    @media (min-width: 950px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
