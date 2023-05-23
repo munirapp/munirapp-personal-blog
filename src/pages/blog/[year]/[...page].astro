@@ -24,16 +24,23 @@ export async function getStaticPaths({ paginate }: AstroGetStaticPathsParams) {
     .filter((category) => {
       const postFiles = fs
         .readdirSync(pathJoin(articleDir, category.year))
-        .filter((file) => file.split('.')[1] === 'mdx')
+        .filter((file) => file.split('.')[1] === 'md')
       if (postFiles.length) return true
     })
     .map((category) => {
       const postFiles = fs
         .readdirSync(pathJoin(articleDir, category.year))
-        .filter((file) => file.split('.')[1] === 'mdx')
-      const posts = postFiles.map(
-        (postFilename) => matter.default(fs.readFileSync(pathJoin(articleDir, category.year, postFilename))).data
-      )
+        .filter((file) => file.split('.')[1] === 'md')
+      const posts = postFiles.map((postFilename) => {
+        const post = matter.default(fs.readFileSync(pathJoin(articleDir, category.year, postFilename))).data
+        return {
+          slug: `/blog/${category.year}/${post.slug}`,
+          title: post.title,
+          cover: post.cover,
+          description: `${post.description.slice(0, 100)}...`,
+          date: new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+        }
+      })
       return paginate?.(posts, { params: { year: category.year }, pageSize: 6 })
     })
 
@@ -48,36 +55,36 @@ const { year } = Astro.params
   title="Blog"
   description="An example of a blog with dynamic content fetched from JSONPlaceholder using the title, body and userId."
 >
-  <section class="my-12">
+  <section>
     <div class="space-content container">
       <h1>{year}</h1>
     </div>
-  </section>
-  <section class="my-12">
-    <div class="container">
-      <p class="text-sm"><em>Post {page.start + 1} through {page.end + 1} of {page.total} total posts</em></p>
-      <ul class="my-3">
-        {
-          page.data.map((post: Posts) => (
-            <li>
-              <Card url={post.url} title={post.title}>
-                {post.description.slice(0, 100)}...
-              </Card>
-            </li>
-          ))
-        }
-      </ul>
-      <div class="mt-12 grid place-content-center">
-        <Pagination
-          firstPage={page.url.prev ? `/blog/${year}` : null}
-          previousPage={page.url.prev ? page.url.prev : null}
-          nextPage={page.url.next ? page.url.next : null}
-          lastPage={page.url.next ? `/blog/${year}/${Math.round(page.total / page.size)}` : null}
-          currentPage={page.currentPage}
-          totalPages={Math.round(page.total / page.size)}
-        />
+    <section class="my-12">
+      <div class="container">
+        <p class="text-sm"><em>Post {page.start + 1} through {page.end + 1} of {page.total} total posts</em></p>
+        <ul class="my-3">
+          {
+            page.data.map((post: Posts) => (
+              <li>
+                <Card url={post.slug} title={post.title} img={post.cover} footer={post.date}>
+                  {post.description}
+                </Card>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-12 grid place-content-center">
+          <Pagination
+            firstPage={page.url.prev ? `/blog/${year}` : null}
+            previousPage={page.url.prev ? page.url.prev : null}
+            nextPage={page.url.next ? page.url.next : null}
+            lastPage={page.url.next ? `/blog/${year}/${Math.round(page.total / page.size) + 1}` : null}
+            currentPage={page.currentPage}
+            totalPages={Math.round(page.total / page.size)}
+          />
+        </div>
       </div>
-    </div>
+    </section>
   </section>
 </DefaultLayout>
 

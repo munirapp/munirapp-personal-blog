@@ -22,6 +22,8 @@ export interface AstroGetStaticPathsParams {
 
 export interface Posts {
   title: string
-  url: string
+  slug: string
   description: string
+  cover?: string
+  date?: string
 }

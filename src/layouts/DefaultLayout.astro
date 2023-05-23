@@ -1,7 +1,8 @@
 ---
 import '../assets/scss/globals.scss'
-import SiteMeta from '../components/SiteMeta.astro'
-import Header from '../components/Header.astro'
+import SiteMeta from '@components/SiteMeta.astro'
+import Header from '@components/Header.astro'
+import Footer from '@components/Footer.astro'
 
 const {
   title = 'MunirApp Personal Blog',
@@ -28,6 +29,7 @@ const {
     <main id="main-content">
       <slot />
     </main>
+    <Footer />
     <style lang="scss" is:global>
       // theme settings
       :root {

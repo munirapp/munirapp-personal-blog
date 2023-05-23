@@ -15,10 +15,18 @@ const latestYear = new Date().getFullYear()
 
 const latestArticleDir = pathJoin(__dirname, '../articles', `${latestYear}`)
 
-const latestItems = fs
+const latestItems: Array<Posts> = fs
   .readdirSync(latestArticleDir)
   .map((item) => matter.default(fs.readFileSync(pathJoin(latestArticleDir, item))))
-  .map((item) => ({ title: item.data.title, url: item.data.url, description: item.data.description }))
+  .map(
+    (item): Posts => ({
+      title: item.data.title,
+      slug: `/blog/${latestYear}/${item.data.slug}`,
+      description: item.data.description,
+      cover: item.data.cover,
+      date: new Date(item.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+    })
+  )
   .slice(0, 3)
 ---
 
@@ -34,7 +42,7 @@ const latestItems = fs
         {
           latestItems.map((post: Posts) => (
             <li>
-              <Card title={post.title} url={post.url}>
+              <Card title={post.title} url={post.slug} img={post.cover} footer={post.date}>
                 {post.description.substring(0, 100)}...
               </Card>
             </li>

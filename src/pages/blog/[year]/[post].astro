@@ -3,14 +3,14 @@ import fs from 'node:fs'
 import { fileURLToPath } from 'url'
 import { dirname, join as pathJoin } from 'path'
 
-import * as matter from 'gray-matter'
+import { Icon } from 'astro-icon'
+
 // @ts-ignore
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
 
-import type { Posts, AstroGetStaticPathsParams } from '@interfaces/index'
 import DefaultLayout from '../../../layouts/DefaultLayout.astro'
 
-export async function getStaticPaths({ paginate }: AstroGetStaticPathsParams) {
+export async function getStaticPaths() {
   const __dirname = dirname(fileURLToPath(import.meta.url))
 
   const articleDir = pathJoin(__dirname, '../../../articles')
@@ -20,71 +20,132 @@ export async function getStaticPaths({ paginate }: AstroGetStaticPathsParams) {
     .map((item) => ({ year: item, url: `/blog/${item}` }))
     .reverse()
 
-  const staticPaths = yearCategories
-    .filter((category) => {
-      const postFiles = fs
-        .readdirSync(pathJoin(articleDir, category.year))
-        .filter((file) => file.split('.')[1] === 'mdx')
-      if (postFiles.length) return true
-    })
-    .map((category) => {
-      const postFiles = fs
-        .readdirSync(pathJoin(articleDir, category.year))
-        .filter((file) => file.split('.')[1] === 'mdx')
-      return postFiles.map((postFilename) => {
-        const post = matter.default(fs.readFileSync(pathJoin(articleDir, category.year, postFilename)))
-        const data = {
-          params: { post: post.data.slug, year: category.year },
-          props: { post: { ...post.data, content: post.content } },
-        }
+  const staticPaths = await Promise.all(
+    yearCategories.map(async (category) => {
+      const dirnameYear = pathJoin(articleDir, category.year)
+      const postFiles = await Astro.glob('../../../articles/**/*.md')
 
-        return data
-      })
+      return postFiles
+        .filter((postItem) => {
+          if (pathJoin(postItem.file, '..') === dirnameYear) return postItem
+        })
+        .map((postItem) => {
+          return {
+            params: { post: postItem.frontmatter.slug, year: category.year },
+            props: {
+              post: {
+                frontmatter: {
+                  ...postItem.frontmatter,
+                  date: new Date(postItem.frontmatter.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  }),
+                },
+                Content: postItem.Content,
+              },
+            },
+          }
+        })
     })
+  )
 
   return staticPaths
 }
 
-const { post } = Astro.props
+const { frontmatter, Content } = Astro.props.post
 const { year } = Astro.params
 ---
 
-<DefaultLayout title={post.title} description={post.body} url={post.title}>
+<DefaultLayout title={frontmatter.title} description={frontmatter.description} image={frontmatter.cover}>
   <div class="container">
-    <div class="mt-12">
+    <div class="mt-2">
       <Breadcrumbs>
         <BreadcrumbsItem href="/" label="Home" />
-        <BreadcrumbsItem href="/" label="Blog" />
+        <BreadcrumbsItem href="/blog" label="Blog" />
         <BreadcrumbsItem href={`/blog/${year}`} label={year} />
-        <BreadcrumbsItem currentPage={true} label={post.title} />
+        <BreadcrumbsItem currentPage={true} label={frontmatter.title} />
       </Breadcrumbs>
     </div>
   </div>
-  <section class="my-12">
+  <section>
     <div class="container">
-      <h1>{post.title}</h1><br />
+      <div class="article my-10">
+        <img src={frontmatter.cover} alt={frontmatter.description} />
+        <h1>{frontmatter.title}</h1><br />
+        <div class="subheading">
+          <span
+            ><Icon name="ic:baseline-calendar-today" />
+            {frontmatter.date} | <Icon name="ph:clock-bold" />
+            {frontmatter.minutesRead}</span
+          >
+        </div>
+        <Content />
+        <script
+          src="https://giscus.app/client.js"
+          data-repo="munirapp/munirapp-personal-blog"
+          data-repo-id="MDEwOlJlcG9zaXRvcnkyNjgwMjk1NjQ="
+          data-category="Q&A"
+          data-category-id="DIC_kwDOD_nOfM4CWpv4"
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="preferred_color_scheme"
+          data-lang="en"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async
+        ></script>
+      </div>
     </div>
   </section>
-  <section class="my-12">
-    <div class="container">
-      {post.content}
-    </div>
-  </section>
+
+  <style lang="scss">
+    ul {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 4rem;
+
+      @media (min-width: 550px) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2rem;
+      }
+
+      @media (min-width: 950px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+
+  <script>
+    let blocks = document.querySelectorAll('pre')
+
+    blocks.forEach((block) => {
+      if (!navigator.clipboard) {
+        return
+      }
+
+      const button = document.createElement('button')
+
+      button.className = 'button has-icon size-tiny button-copy'
+      button.innerHTML =
+        '<svg viewBox="0 0 512 512" class="astro-BBE6DXRZ" astro-icon="ion:copy"><path fill="currentColor" d="M408 480H184a72 72 0 0 1-72-72V184a72 72 0 0 1 72-72h224a72 72 0 0 1 72 72v224a72 72 0 0 1-72 72z"></path><path fill="currentColor" d="M160 80h235.88A72.12 72.12 0 0 0 328 32H104a72 72 0 0 0-72 72v224a72.12 72.12 0 0 0 48 67.88V160a80 80 0 0 1 80-80z"></path></svg>'
+      block.appendChild(button)
+
+      const copyMessage = document.createElement('span')
+      copyMessage.innerText = 'copied'
+      button.appendChild(copyMessage)
+
+      button.addEventListener('click', async () => {
+        const childCode = block.querySelector('code')
+        await navigator.clipboard.writeText(childCode!.innerText)
+      })
+
+      button.addEventListener('mouseleave', () => {
+        button.blur()
+      })
+    })
+  </script>
 </DefaultLayout>
-
-<style lang="scss">
-  ul {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 4rem;
-
-    @media (min-width: 550px) {
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 2rem;
-    }
-
-    @media (min-width: 950px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-</style>
