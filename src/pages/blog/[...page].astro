@@ -6,7 +6,7 @@ import type { Posts, AstroGetStaticPathsParams } from '@interfaces/index'
 import DefaultLayout from '@layouts/DefaultLayout.astro'
 
 export async function getStaticPaths({ paginate }: AstroGetStaticPathsParams) {
-  const allPosts = await Astro.glob('../../articles/**/*.md')
+  const allPosts = await Astro.glob('../../content/**/*.md')
 
   return paginate?.(
     allPosts.reverse().map((post) => ({

@@ -11,15 +11,15 @@ import { Card } from 'accessible-astro-components'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const featuredItems = JSON.parse(
-  fs.readFileSync(pathJoin(__dirname, '../assets/featuredArticles.json')).toString()
+  fs.readFileSync(pathJoin(process.cwd(), 'src/assets/featuredArticles.json')).toString()
 ).reverse()
 
-const allArticles = await Astro.glob('../articles/**/*.md')
+const allArticles = await Astro.glob('../content/**/*.md')
 
 const posts: Posts[] = allArticles
   .reverse()
   .filter((article) =>
-    featuredItems.map((item: string) => pathJoin(__dirname, '../articles', item)).includes(pathJoin(article.file))
+    featuredItems.map((item: string) => pathJoin(process.cwd(), 'src/content', item)).includes(pathJoin(article.file))
   )
   .map((article, index) => ({
     title: article.frontmatter.title,

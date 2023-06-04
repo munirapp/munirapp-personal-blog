@@ -13,7 +13,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const latestYear = new Date().getFullYear()
 
-const latestArticleDir = pathJoin(__dirname, '../articles', `${latestYear}`)
+const latestArticleDir = pathJoin(process.cwd(), 'src/content', `${latestYear}`)
 
 const latestItems: Array<Posts> = fs
   .readdirSync(latestArticleDir)

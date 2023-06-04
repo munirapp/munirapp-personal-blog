@@ -13,7 +13,7 @@ import DefaultLayout from '@layouts/DefaultLayout.astro'
 export async function getStaticPaths({ paginate }: AstroGetStaticPathsParams) {
   const __dirname = dirname(fileURLToPath(import.meta.url))
 
-  const articleDir = pathJoin(__dirname, '../../../articles')
+  const articleDir = pathJoin(process.cwd(), 'src/content')
 
   const yearCategories = fs
     .readdirSync(pathJoin(articleDir))
@@ -25,7 +25,9 @@ export async function getStaticPaths({ paginate }: AstroGetStaticPathsParams) {
       const postFiles = fs
         .readdirSync(pathJoin(articleDir, category.year))
         .filter((file) => file.split('.')[1] === 'md')
-      if (postFiles.length) return true
+      if (postFiles.length) {
+        return true
+      }
     })
     .map((category) => {
       const postFiles = fs

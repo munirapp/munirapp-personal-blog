@@ -1,16 +1,13 @@
 ---
 import fs from 'node:fs'
-import { fileURLToPath } from 'url'
-import { dirname, join as pathJoin } from 'path'
+import { join as pathJoin } from 'path'
 
 import Navigation from '@components/Navigation.astro'
 // @ts-ignore
 import { SkipLinks } from 'accessible-astro-components'
 import { Icon } from 'astro-icon'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-
-const articleDir = pathJoin(__dirname, '../articles')
+const articleDir = pathJoin(process.cwd(), 'src/content')
 
 const currentYear = new Date().getFullYear()
 

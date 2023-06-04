@@ -1,7 +1,6 @@
 ---
 import fs from 'node:fs'
-import { fileURLToPath } from 'url'
-import { dirname, join as pathJoin } from 'path'
+import { join as pathJoin } from 'path'
 
 import { Icon } from 'astro-icon'
 
@@ -11,9 +10,8 @@ import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
 import DefaultLayout from '../../../layouts/DefaultLayout.astro'
 
 export async function getStaticPaths() {
-  const __dirname = dirname(fileURLToPath(import.meta.url))
 
-  const articleDir = pathJoin(__dirname, '../../../articles')
+  const articleDir = pathJoin(process.cwd(), 'src/content')
 
   const yearCategories = fs
     .readdirSync(pathJoin(articleDir))
@@ -23,11 +21,13 @@ export async function getStaticPaths() {
   const staticPaths = await Promise.all(
     yearCategories.map(async (category) => {
       const dirnameYear = pathJoin(articleDir, category.year)
-      const postFiles = await Astro.glob('../../../articles/**/*.md')
+      const postFiles = await Astro.glob('../../../content/**/*.md')
 
       return postFiles
         .filter((postItem) => {
-          if (pathJoin(postItem.file, '..') === dirnameYear) return postItem
+          if (pathJoin(postItem.file, '..') === dirnameYear) {
+            return postItem
+          }
         })
         .map((postItem) => {
           return {
