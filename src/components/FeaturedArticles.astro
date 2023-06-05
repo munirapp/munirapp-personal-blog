@@ -1,17 +1,14 @@
 ---
 import fs from 'node:fs'
-import { fileURLToPath } from 'url'
-import { dirname, join as pathJoin } from 'path'
+import { join as pathJoin } from 'path'
 
 import type { Posts } from '@interfaces/index'
 
 // @ts-ignore
 import { Card } from 'accessible-astro-components'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-
 const featuredItems = JSON.parse(
-  fs.readFileSync(pathJoin(process.cwd(), 'src/assets/featuredArticles.json')).toString()
+  fs.readFileSync(pathJoin(process.cwd(), 'src/content/featuredArticles.json')).toString()
 ).reverse()
 
 const allArticles = await Astro.glob('../content/**/*.md')
