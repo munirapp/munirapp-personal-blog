@@ -1,7 +1,6 @@
 ---
 import fs from 'node:fs'
-import { fileURLToPath } from 'url'
-import { dirname, join as pathJoin } from 'path'
+import { join as pathJoin } from 'path'
 
 import * as matter from 'gray-matter'
 // @ts-ignore
@@ -11,8 +10,6 @@ import type { Posts, AstroGetStaticPathsParams } from '@interfaces/index'
 import DefaultLayout from '@layouts/DefaultLayout.astro'
 
 export async function getStaticPaths({ paginate }: AstroGetStaticPathsParams) {
-  const __dirname = dirname(fileURLToPath(import.meta.url))
-
   const articleDir = pathJoin(process.cwd(), 'src/content')
 
   const yearCategories = fs
