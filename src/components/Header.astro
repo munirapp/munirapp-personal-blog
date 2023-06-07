@@ -13,6 +13,7 @@ const currentYear = new Date().getFullYear()
 
 const yearCategories = fs
   .readdirSync(pathJoin(articleDir))
+  .filter((item) => fs.lstatSync(pathJoin(articleDir, item)).isDirectory())
   .map((item) => ({ year: item, url: `/blog/${item}` }))
   .reverse()
 ---

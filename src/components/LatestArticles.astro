@@ -8,17 +8,21 @@ import { Card } from 'accessible-astro-components'
 
 import type { Posts } from '@interfaces/index'
 
-const latestYear = new Date().getFullYear()
+const articleDir = pathJoin(process.cwd(), 'src/content')
 
-const latestArticleDir = pathJoin(process.cwd(), 'src/content', `${latestYear}`)
+const latestArticleDir =
+  fs
+    .readdirSync(articleDir)
+    .filter((item) => fs.lstatSync(pathJoin(articleDir, item)).isDirectory())
+    .reverse()?.[0] || ''
 
 const latestItems: Array<Posts> = fs
-  .readdirSync(latestArticleDir)
-  .map((item) => matter.default(fs.readFileSync(pathJoin(latestArticleDir, item))))
+  .readdirSync(pathJoin(articleDir, latestArticleDir))
+  .map((item) => matter.default(fs.readFileSync(pathJoin(articleDir, latestArticleDir, item))))
   .map(
     (item): Posts => ({
       title: item.data.title,
-      slug: `/blog/${latestYear}/${item.data.slug}`,
+      slug: `/blog/${latestArticleDir}/${item.data.slug}`,
       description: item.data.description,
       cover: item.data.cover,
       date: new Date(item.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
