@@ -1,0 +1,21 @@
+---
+import DefaultLayout from '@layouts/DefaultLayout.astro'
+
+const { src = '/404.png' } = Astro.props
+---
+
+<DefaultLayout>
+  <section class="hero my-12">
+    <div class="container">
+      <img src={src} alt="404 image" decoding="async" />
+      <h2 class="text-center text-4xl">Sorry, Page not found</h2>
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="css">
+  img {
+    width: 350px;
+    margin: 0 auto;
+  }
+</style>

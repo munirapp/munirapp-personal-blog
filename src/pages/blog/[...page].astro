@@ -1,0 +1,73 @@
+---
+// @ts-ignore
+import { Card, Pagination } from 'accessible-astro-components'
+
+import type { Posts, AstroGetStaticPathsParams } from '@interfaces/index'
+import DefaultLayout from '@layouts/DefaultLayout.astro'
+
+export async function getStaticPaths({ paginate }: AstroGetStaticPathsParams) {
+  const allPosts = await Astro.glob('../../content/**/*.md')
+
+  return paginate?.(
+    allPosts.reverse().map((post) => ({
+      ...post.frontmatter,
+      title: post.frontmatter.title.slice(0, 30) + '...',
+      description: `${post.frontmatter.description.slice(0, 100)}...`,
+      slug: `/blog/${post.file.split('/')[post.file.split('/').length - 2]}/${post.frontmatter.slug}`,
+      date: new Date(post.frontmatter.date).toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+    })),
+    { pageSize: 6 }
+  )
+}
+
+const { page } = Astro.props
+---
+
+<DefaultLayout title="Blog" , description="list of all blog post">
+  <section>
+    <div class="space-content container"><h1>All Blog</h1></div>
+    <section class="my-12">
+      <div class="container">
+        <p class="text-sm"><em>Post {page.start + 1} through {page.end + 1} of {page.total} total posts</em></p>
+        <ul class="my-3">
+          {
+            page.data.map((post: Posts) => (
+              <li>
+                <Card title={post.title} url={post.slug} img={post.cover} footer={post.date}>
+                  {post.description}
+                </Card>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-12 grid place-content-center">
+          <Pagination
+            firstPage={page.url.prev ? `/blog/` : null}
+            previousPage={page.url.prev ? page.url.prev : null}
+            nextPage={page.url.next ? page.url.next : null}
+            lastPage={page.url.next ? `/blog/${Math.round(page.total / page.size) + 1}` : null}
+            currentPage={page.currentPage}
+            totalPages={Math.round(page.total / page.size)}
+          />
+        </div>
+      </div>
+    </section>
+  </section>
+</DefaultLayout>
+
+<style lang="scss">
+  ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 4rem;
+
+    @media (min-width: 550px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 2rem;
+    }
+
+    @media (min-width: 950px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

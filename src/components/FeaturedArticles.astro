@@ -1,0 +1,72 @@
+---
+import fs from 'node:fs'
+import { join as pathJoin } from 'path'
+
+import type { Posts } from '@interfaces/index'
+
+// @ts-ignore
+import { Card } from 'accessible-astro-components'
+
+const featuredItems = JSON.parse(
+  fs.readFileSync(pathJoin(process.cwd(), 'src/content/featuredArticles.json')).toString()
+).reverse()
+
+const allArticles = await Astro.glob('../content/**/*.md')
+
+const posts: Posts[] = allArticles
+  .reverse()
+  .filter((article) =>
+    featuredItems.map((item: string) => pathJoin(process.cwd(), 'src/content', item)).includes(pathJoin(article.file))
+  )
+  .map((article, index) => ({
+    title: article.frontmatter.title.slice(0, 30) + '...',
+    description: article.frontmatter.description.slice(0, 100) + '...',
+    slug: `/blog/${featuredItems[index].split('/')[0]}/${article.frontmatter.slug}`,
+    cover: article.frontmatter.cover,
+    date: new Date(article.frontmatter.date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }),
+  }))
+---
+
+<div>
+  <section class="mb-8 mt-12">
+    <div class="space-content container">
+      <h2 class="text-4 xl mb-4">Featured Articles</h2>
+    </div>
+  </section>
+  <section class="mb-12">
+    <div class="container">
+      <ul class="my-3">
+        {
+          posts.map((post: Posts) => (
+            <li>
+              <Card title={post.title} img={post.cover} url={post.slug} footer={post.date}>
+                {post.description.slice(0, 100)}...
+              </Card>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</div>
+
+<style lang="scss">
+  ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 4rem;
+
+    @media (min-width: 550px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 2rem;
+    }
+
+    @media (min-width: 950px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
