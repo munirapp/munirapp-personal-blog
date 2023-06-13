@@ -19,7 +19,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
+      - name: Buld & Complie
+        run: npm run build
       - name: Clone Production Repo & Update
         run: |
           git clone https://munirapp:${{secrets.TOKEN_GITHUB}}@github.com/munirapp/munirapp.github.io
