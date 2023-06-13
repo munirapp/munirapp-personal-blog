@@ -31,11 +31,12 @@ export async function getStaticPaths({ paginate }: AstroGetStaticPathsParams) {
       const postFiles = fs
         .readdirSync(pathJoin(articleDir, category.year))
         .filter((file) => file.split('.')[1] === 'md')
+        .reverse()
       const posts = postFiles.map((postFilename) => {
         const post = matter.default(fs.readFileSync(pathJoin(articleDir, category.year, postFilename))).data
         return {
           slug: `/blog/${category.year}/${post.slug}`,
-          title: post.title,
+          title: post.title.slice(0, 30) + '...',
           cover: post.cover,
           description: `${post.description.slice(0, 100)}...`,
           date: new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),

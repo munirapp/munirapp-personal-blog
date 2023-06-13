@@ -9,8 +9,6 @@ import { Icon } from 'astro-icon'
 
 const articleDir = pathJoin(process.cwd(), 'src/content')
 
-const currentYear = new Date().getFullYear()
-
 const yearCategories = fs
   .readdirSync(pathJoin(articleDir))
   .filter((item) => fs.lstatSync(pathJoin(articleDir, item)).isDirectory())
@@ -28,11 +26,11 @@ const yearCategories = fs
       <button aria-haspopup="true" aria-expanded="false">Blog</button>
       <ul class="dropdown-menu">
         {
-          yearCategories.map((category) => (
+          yearCategories.map((category, index) => (
             <li class="submenu-item">
               <a href={category.url}>
                 {category.year}
-                {+category.year === +currentYear ? `(Latest)` : ''}
+                {!index ? `(Latest)` : ''}
               </a>
             </li>
           ))

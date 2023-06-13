@@ -1,1 +1,5 @@
-["2022/example.md", "2023/example.md", "2023/example2.md"]
+[
+  "2019/11-02-type-coercion-in-javascript.md",
+  "2019/02-10-making-simple-sentiment-analysis.md",
+  "2019/01-03-throttling-debouncing-handling.md"
+]
