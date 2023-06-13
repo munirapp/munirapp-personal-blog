@@ -10,7 +10,6 @@ import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
 import DefaultLayout from '../../../layouts/DefaultLayout.astro'
 
 export async function getStaticPaths() {
-
   const articleDir = pathJoin(process.cwd(), 'src/content')
 
   const yearCategories = fs
@@ -54,10 +53,16 @@ export async function getStaticPaths() {
 }
 
 const { frontmatter, Content } = Astro.props.post
+const { url = 'https://munirapp.github.io' } = Astro.props
 const { year } = Astro.params
 ---
 
-<DefaultLayout title={frontmatter.title} description={frontmatter.description} image={frontmatter.cover}>
+<DefaultLayout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  image={frontmatter.cover}
+  url={url + '/blog/' + year + '/' + frontmatter.slug}
+>
   <div class="container">
     <div class="mt-2">
       <Breadcrumbs>
