@@ -1,0 +1,36 @@
+name: Deployment Web
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install Dependencies
+        run: npm ci
+      - name: Clone Production Repo & Update
+        run: |
+          git clone https://munirapp:${{secrets.TOKEN_GITHUB}}@github.com/munirapp/munirapp.github.io
+          rm -rf munirapp.github.io/*
+          cp -r ./dist/* munirapp.github.io/
+          touch munirapp.github.io/.nojekyll
+      - name: Deploy to Production Repo
+        run: |
+          git config --global user.email "softwaremakassar.gmail.com"
+          git config --global user.name "Munir AP"
+          git add . 
+          git commit --allow-empty -m "update"
+          git push origin main
+        working-directory: ./munirapp.github.io
