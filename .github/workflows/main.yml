@@ -20,8 +20,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install Dependencies
         run: npm install
-      - name: Buld & Complie
+      - name: Build & Complie
         run: npm run build
+      - name: Rebuild Algolia dataset
+        run: ALGOLIA_APP_ID=${{secrets.ALGOLIA_APP_ID}} ALGOLIA_API_KEY=${{secrets.ALGOLIA_API_KEY}} node ./bin/generateArticleJSON.js
       - name: Clone Production Repo & Update
         run: |
           git clone https://munirapp:${{secrets.TOKEN_GITHUB}}@github.com/munirapp/munirapp.github.io

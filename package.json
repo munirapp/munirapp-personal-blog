@@ -38,5 +38,8 @@
       "prettier-plugin-tailwindcss"
     ],
     "pluginSearchDirs": false
+  },
+  "dependencies": {
+    "algoliasearch": "^4.17.2"
   }
 }

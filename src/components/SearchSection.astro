@@ -1,0 +1,108 @@
+---
+//@ts-ignore
+import { Modal } from 'accessible-astro-components'
+---
+
+<>
+  <div class="searchbar-wrapper">
+    <div class="container flex flex-col items-center gap-2">
+      <h2 class="mt-2 text-center text-sm">🤔 What are you looking for?</h2>
+      <div class="w-full pb-3">
+        <input id="search-modal" class="text-sm" type="text" placeholder="click to search or press `⌘`+`K`" readonly />
+      </div>
+    </div>
+  </div>
+
+  <Modal triggerId="search-modal" title="Search Articles" closeText="Cancel">
+    <span class="mb-4 text-sm">powered by <a>algolia</a></span>
+    <div class="container">
+      <div id="searchbox" class="mb-4"></div>
+      <div id="hits"></div>
+    </div>
+  </Modal>
+</>
+
+<style lang="scss">
+  .searchbar-wrapper {
+    color: white;
+    background: linear-gradient(40deg, var(--primary-500), var(--primary-200), var(--secondary-100));
+
+    input {
+      color: black;
+      padding: 10px;
+      padding-left: 15px;
+      border-radius: 5px;
+    }
+  }
+</style>
+
+<script
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/algoliasearch@4.17.2/dist/algoliasearch-lite.umd.js"
+  integrity="sha256-X2G+vjV8i6Jj2NSGFTvy6Z4q2AlmF5aH0HiIpWJ8eU4="
+  crossorigin="anonymous"
+></script>
+<script
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.56.3/dist/instantsearch.production.min.js"
+  integrity="sha256-mWvjWAfZylKMOg+S3HLq+wng1HHRnl2Idr2r8NsUzIU="
+  crossorigin="anonymous"
+></script>
+<script is:inline>
+  document.querySelector('input[id=search-modal]').addEventListener('click', function () {
+    setTimeout(() => {
+      document.querySelector('.ais-SearchBox-input').focus()
+    }, 500)
+  })
+
+  document.addEventListener('keydown', function (ev) {
+    if (ev.metaKey && ev.key === 'k') {
+      document.querySelector('#search-modal').click()
+      document.querySelector('.ais-SearchBox-input').focus()
+    }
+  })
+
+  const searchClient = algoliasearch('OGOX7JWAN2', 'ffc468f1be9a9bfc0565bdefb29a2df4')
+
+  const search = instantsearch({
+    indexName: 'munirapp_blog',
+    searchClient,
+  })
+
+  search.addWidgets([
+    instantsearch.widgets.searchBox({
+      container: '#searchbox',
+    }),
+
+    instantsearch.widgets.hits({
+      container: '#hits',
+      templates: {
+        item: `
+        <div class="container">
+          <p>{{#helpers.highlight}}{ "attribute": "year" }{{/helpers.highlight}}</p>
+          <a href='/{{#helpers.highlight}}{ "attribute": "slug" }{{/helpers.highlight}}/'>
+            <h2 class="hit-name text-base mb-4">
+              {{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}
+            </h2>
+          </a>
+          <p>{{#helpers.highlight}}{ "attribute": "description" }{{/helpers.highlight}}...</p>
+        </div>
+    `,
+      },
+    }),
+
+    instantsearch.widgets.configure({
+      hitsPerPage: 2,
+    }),
+  ])
+
+  search.start()
+</script>
+
+<style lang="scss" is:global>
+  .modal[aria-labelledby='search-modal'] {
+    .modal__inner {
+      width: 90% !important;
+    }
+  }
+</style>
