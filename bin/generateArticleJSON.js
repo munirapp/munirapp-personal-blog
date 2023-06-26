@@ -59,6 +59,7 @@ const formatAndSanitizeArticle = (articleItem) => ({
   date: articleItem?.data?.date, // Extracts the date property from the article item data
   year: new Date(articleItem?.data?.date).getFullYear(), // Extracts the year from the article item date using the Date object
   content: stripMarkdown(articleItem?.content), // Sanitizes the content property of the article item by stripping Markdown formatting
+  slug: `blog/${new Date(articleItem?.data?.date).getFullYear()}/${articleItem?.data?.slug}`,
 })
 
 /**
@@ -77,6 +78,8 @@ const main = async () => {
       .filter(getOnlyDirectory)
       .map(iterateMapArticleJSON)
       .reduce(reduceArticleJSON, [])
+
+    await algoIndex.clearObjects()
 
     await algoIndex.saveObjects(articleList, { autoGenerateObjectIDIfNotExist: true })
 
