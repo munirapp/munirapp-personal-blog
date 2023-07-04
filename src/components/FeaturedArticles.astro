@@ -21,7 +21,7 @@ const posts: Posts[] = allArticles
   .map((article, index) => ({
     title: article.frontmatter.title.slice(0, 30) + '...',
     description: article.frontmatter.description.slice(0, 100) + '...',
-    slug: `/blog/${featuredItems[index].split('/')[0]}/${article.frontmatter.slug}`,
+    slug: `/blog/${featuredItems.reverse()[index].split('/')[0]}/${article.frontmatter.slug}`,
     cover: article.frontmatter.cover,
     date: new Date(article.frontmatter.date).toLocaleDateString('en-US', {
       year: 'numeric',

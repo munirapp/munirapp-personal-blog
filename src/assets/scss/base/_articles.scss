@@ -79,5 +79,42 @@
 
   ol {
     list-style: nth;
+
+    li {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      font-size: 1.15rem;
+      line-height: 2rem;
+
+      code {
+        background-color: whitesmoke;
+        padding: 2px 4px;
+        border: 1px solid whitesmoke;
+        border-radius: 2px;
+        color: black;
+        margin-right: 3px;
+      }
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: 1rem;
+
+    li {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      font-size: 1.15rem;
+      line-height: 2rem;
+
+      code {
+        background-color: whitesmoke;
+        padding: 2px 4px;
+        border: 1px solid whitesmoke;
+        border-radius: 2px;
+        color: black;
+        margin-right: 3px;
+      }
+    }
   }
 }
