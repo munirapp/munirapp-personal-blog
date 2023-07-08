@@ -1,5 +1,5 @@
 ---
-title: 'A Deep Dive into the Technology Behind My Blog (Part 1): Astro'
+title: '(Part 1) A Deep Dive into the Technology Behind My Blog: Astro'
 slug: 07-03-deep-dive-technology-behind-my-blog-part-1
 description: Similar to an iceberg, the world of technology is considerably larger on the inside than it is on the outside. A well-designed personal blog may seem simple on the surface, but it is actually powered by a complex modern technologies that operate together seamlessly.
 date: 2023-07-03
@@ -191,14 +191,15 @@ export async function getStaticPaths() {
 
 const { frontmatter, Content } = Astro.props
 ---
-  <h1>{frontmatter.title}</h1>
-  <h2>Post author: {frontmatter.author}</h2>
-  <p>{frontmatter.description}</p>
-  <!-- Markdown content is injected here -->
-  <Content />
+
+<h1>{frontmatter.title}</h1>
+<h2>Post author: {frontmatter.author}</h2>
+<p>{frontmatter.description}</p>
+<!-- Markdown content is injected here -->
+<Content />
 ```
 
-For code highlighting library, by default astro have that built-in feature with [Shiki](https://github.com/shikijs/shiki). You just need to configure it on you astro configuration files. 
+For code highlighting library, by default astro have that built-in feature with [Shiki](https://github.com/shikijs/shiki). You just need to configure it on you astro configuration files.
 
 ```js
 ...
@@ -219,7 +220,7 @@ export default defineConfig({
 ## See More
 
 - `👉 (You are here)` A Deep Dive into the Technology Behind My Blog (Part 1): Astro
-- A Deep Dive into the Technology Behind My Blog (Part 2): Giscus
+- [A Deep Dive into the Technology Behind My Blog (Part 2): Giscus](https://munirapp.github.io/blog/2023/07-06-deep-dive-technology-behind-my-blog-part-2/)
 - A Deep Dive into the Technology Behind My Blog (Part 3): Algolia Search
 
 ## References
