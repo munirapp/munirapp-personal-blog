@@ -125,6 +125,37 @@ const { year } = Astro.params
   </style>
 
   <script>
+    /**
+     * @params {HTMLCollectionOf<HTMLElement>} graphs
+     */
+    async function renderDiagrams(graphs) {
+      const { default: mermaid } = await import('mermaid')
+      mermaid.initialize({
+        startOnLoad: false,
+        fontFamily: 'var(--sans-font)',
+        // @ts-ignore This works, but TS expects a enum for some reason
+        theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default',
+      })
+
+      for (const graph of graphs) {
+        const content = graph.getAttribute('data-content')
+        if (!content) continue
+        let svg = document.createElement('svg')
+        const id = (svg.id = 'mermaid-' + Math.round(Math.random() * 100000))
+        graph.appendChild(svg)
+        mermaid.render(id, content).then((result) => {
+          graph.innerHTML = result.svg
+          document.getElementById(id).style.margin = '0 auto' // fit diagram to center
+          document.getElementById(id).style['margin-bottom'] = '20px'
+        })
+      }
+    }
+
+    const graphs = document.getElementsByClassName('mermaid')
+    if (document.getElementsByClassName('mermaid').length > 0) {
+      renderDiagrams(graphs)
+    }
+
     let blocks = document.querySelectorAll('pre')
 
     blocks.forEach((block) => {
