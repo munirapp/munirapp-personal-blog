@@ -221,7 +221,7 @@ export default defineConfig({
 
 - `👉 (You are here)` A Deep Dive into the Technology Behind My Blog (Part 1): Astro
 - [A Deep Dive into the Technology Behind My Blog (Part 2): Giscus](https://munirapp.github.io/blog/2023/07-06-deep-dive-technology-behind-my-blog-part-2/)
-- A Deep Dive into the Technology Behind My Blog (Part 3): Algolia Search
+- [A Deep Dive into the Technology Behind My Blog (Part 3): Algolia Search](<(https://munirapp.github.io/blog/2023/07-20-deep-dive-technology-behind-my-blog-part-3/)>)
 
 ## References
 

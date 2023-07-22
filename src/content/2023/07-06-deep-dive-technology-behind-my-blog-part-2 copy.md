@@ -86,7 +86,7 @@ and congrats 🎉, you can embed your script tags on your website and let giscus
 
 - [A Deep Dive into the Technology Behind My Blog (Part 1): Astro](https://munirapp.github.io/blog/2023/07-03-deep-dive-technology-behind-my-blog-part-1/)
 - `👉 (You are here)` A Deep Dive into the Technology Behind My Blog (Part 2): Giscus
-- A Deep Dive into the Technology Behind My Blog (Part 3): Algolia Search
+- [A Deep Dive into the Technology Behind My Blog (Part 3): Algolia Search](<(https://munirapp.github.io/blog/2023/07-20-deep-dive-technology-behind-my-blog-part-3/)>)
 
 ## References
 
